@@ -55,6 +55,37 @@ describe("characterSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("valida personagem com restricted true", () => {
+    const valid = {
+      id: "elrond",
+      name: "Elrond",
+      race: "Meio-elfo",
+      excerpt: "Senhor de Valfenda.",
+      content: "Descrição.",
+      restricted: true,
+    };
+    const result = characterSchema.safeParse(valid);
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.restricted).toBe(true);
+    }
+  });
+
+  it("default restricted para false quando omitido", () => {
+    const valid = {
+      id: "frodo",
+      name: "Frodo",
+      race: "Hobbit",
+      excerpt: "Resumo",
+      content: "Conteúdo",
+    };
+    const result = characterSchema.safeParse(valid);
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.restricted).toBe(false);
+    }
+  });
+
   it("rejeita personagem com image inválida (não URL)", () => {
     const invalid = {
       id: "frodo",

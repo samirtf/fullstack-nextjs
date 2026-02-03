@@ -28,6 +28,9 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
+          <a href="#main" className="skipLink">
+            Pular para o conteúdo
+          </a>
           <nav className="nav" aria-label="Principal">
             <Link href="/">Início</Link>
             <Link href="/perfil">Perfil</Link>

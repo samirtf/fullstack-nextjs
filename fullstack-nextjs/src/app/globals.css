@@ -39,6 +39,35 @@ a {
   text-decoration: none;
 }
 
+/* Acessibilidade: foco visível para teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
+/* Skip link: visível apenas ao receber foco */
+.skipLink {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--background);
+  background: var(--foreground);
+  border-radius: 6px;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+
+.skipLink:focus {
+  top: 1rem;
+}
+
 .nav {
   display: flex;
   gap: 1.5rem;

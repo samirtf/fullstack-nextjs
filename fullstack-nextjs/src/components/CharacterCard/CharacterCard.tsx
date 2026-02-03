@@ -12,7 +12,11 @@ export function CharacterCard({ character }: CharacterCardProps) {
 
   return (
     <article className={styles.card}>
-      <Link href={`/characters/${id}`} className={styles.link}>
+      <Link
+        href={`/characters/${id}`}
+        className={styles.link}
+        aria-label={`Ver detalhes de ${name}`}
+      >
         {image ? (
           <div className={styles.imageWrapper}>
             <Image

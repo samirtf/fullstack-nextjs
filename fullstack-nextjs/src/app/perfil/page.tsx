@@ -11,8 +11,13 @@ export default function PerfilPage() {
   const [email, setEmail] = useState(user?.email ?? "");
   const [avatar, setAvatar] = useState(user?.avatar ?? "");
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSimularLogin = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
     try {
       const res = await fetch("/api/user");
       if (!res.ok) throw new Error("Falha ao buscar usuário");
@@ -22,6 +27,9 @@ export default function PerfilPage() {
       setEmail(data.email);
       setAvatar(data.avatar ?? "");
     } catch {
+      setError(
+        "Não foi possível carregar o perfil. Usando dados de demonstração."
+      );
       // Fallback: usar dados locais se a API falhar
       login({
         id: "user-1",
@@ -32,6 +40,8 @@ export default function PerfilPage() {
       setName("Usuário Demo");
       setEmail("demo@exemplo.com");
       setAvatar("https://placehold.co/100x100?text=Demo");
+    } finally {
+      setIsLoading(false);
     }
   }, [login]);
 
@@ -44,10 +54,16 @@ export default function PerfilPage() {
   }, [logout]);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      updateUser({ name, email, avatar: avatar || undefined });
-      setIsEditing(false);
+      setError(null);
+      setSaveLoading(true);
+      try {
+        updateUser({ name, email, avatar: avatar || undefined });
+        setIsEditing(false);
+      } finally {
+        setSaveLoading(false);
+      }
     },
     [updateUser, name, email, avatar]
   );
@@ -64,17 +80,24 @@ export default function PerfilPage() {
   if (!user) {
     return (
       <div className={styles.page}>
-        <main className={styles.main}>
+        <main id="main" className={styles.main}>
           <h1 className={styles.title}>Perfil</h1>
           <p className={styles.message}>
             Você não está logado. Use o botão abaixo para simular o login.
           </p>
+          {error && (
+            <p className={styles.errorMessage} role="alert">
+              {error}
+            </p>
+          )}
           <button
             type="button"
             onClick={handleSimularLogin}
             className={styles.primaryButton}
+            disabled={isLoading}
+            aria-busy={isLoading}
           >
-            Simular login
+            {isLoading ? "Carregando…" : "Simular login"}
           </button>
         </main>
       </div>
@@ -83,7 +106,7 @@ export default function PerfilPage() {
 
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <main id="main" className={styles.main}>
         <h1 className={styles.title}>Perfil</h1>
 
         {!isEditing ? (
@@ -92,7 +115,7 @@ export default function PerfilPage() {
               {user.avatar ? (
                 <Image
                   src={user.avatar}
-                  alt=""
+                  alt={`Avatar de ${user.name}`}
                   className={styles.avatar}
                   width={100}
                   height={100}
@@ -171,13 +194,19 @@ export default function PerfilPage() {
               />
             </div>
             <div className={styles.actions}>
-              <button type="submit" className={styles.primaryButton}>
-                Salvar
+              <button
+                type="submit"
+                className={styles.primaryButton}
+                disabled={saveLoading}
+                aria-busy={saveLoading}
+              >
+                {saveLoading ? "Salvando…" : "Salvar"}
               </button>
               <button
                 type="button"
                 onClick={() => setIsEditing(false)}
                 className={styles.secondaryButton}
+                disabled={saveLoading}
               >
                 Cancelar
               </button>

@@ -16,7 +16,7 @@ export default function CharacterError({ error, reset }: ErrorProps) {
 
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <main id="main" className={styles.main}>
         <h1 className={styles.title}>Algo deu errado</h1>
         <p className={styles.message}>
           Não foi possível carregar os dados do personagem. Tente novamente.

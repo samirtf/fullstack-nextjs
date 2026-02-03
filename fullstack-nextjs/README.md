@@ -1,53 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personagens do Senhor dos Anéis
 
-## Project structure
+Aplicação [Next.js](https://nextjs.org) que exibe os nove membros da **Sociedade do Anel**: listagem na página inicial, páginas de detalhes por personagem e uma área de perfil de usuário com edição e simulação de login.
 
-Code is organized by functional responsibility:
+## Funcionalidades
 
-- **`src/app/`** – Pages and routes (Next.js App Router)
-- **`src/components/`** – Reusable UI components
-- **`src/features/`** – Feature-specific modules
-- **`src/context/`** – React Context API (state)
-- **`src/lib/`** – Utilities and helpers
-- **`src/__tests__/`** – Unit tests for components and logic (test files may also live next to modules as `*.test.ts` / `*.test.tsx`)
+- **Início** – Listagem em grid dos personagens (Hobbits, Homens, Mago, Elfo e Anão) com cards clicáveis.
+- **Detalhes** – Página por personagem com imagem, raça, resumo e texto completo; geração estática com revalidação (ISR).
+- **Perfil** – Simulação de login (dados da API), exibição e edição de nome, e-mail e avatar.
+- **Acessibilidade** – Skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de loading/erro.
+- **Tema** – Suporte a tema claro/escuro conforme preferência do sistema.
 
-## Test convention
+## Pré-requisitos
 
-- Unit tests for components and logic; focus on reliability and maintainability.
-- Tests live in `src/__tests__/` or colocated next to the module (e.g. `Component.test.tsx`).
-- Test runner and setup (e.g. Jest + Testing Library) will be configured when tests are added.
+- Node.js 18+
+- npm, yarn, pnpm ou bun
 
-## Getting Started
-
-First, run the development server:
+## Instalação
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Comando                | Descrição                                |
+| ---------------------- | ---------------------------------------- |
+| `npm run dev`          | Servidor de desenvolvimento (porta 3000) |
+| `npm run build`        | Build de produção                        |
+| `npm run start`        | Servidor de produção (após `build`)      |
+| `npm run lint`         | Executa o ESLint                         |
+| `npm run lint:fix`     | Corrige automaticamente o ESLint         |
+| `npm run format`       | Formata o código com Prettier            |
+| `npm run format:check` | Verifica formatação com Prettier         |
+| `npm run test`         | Executa os testes (Jest)                 |
+| `npm run test:watch`   | Testes em modo watch                     |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Execução
 
-## Learn More
+1. Instale as dependências: `npm install`
+2. Inicie o servidor: `npm run dev`
+3. Acesse [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+Para produção:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estrutura do projeto
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # App Router (rotas e páginas)
+│   ├── api/                # Route Handlers (API interna)
+│   │   ├── characters/     # GET lista e GET por id
+│   │   └── user/           # GET usuário padrão
+│   ├── characters/[id]/    # Página de detalhes + loading + error + not-found
+│   ├── perfil/             # Página de perfil (client)
+│   ├── layout.tsx          # Layout raiz e navegação
+│   ├── page.tsx            # Página inicial (listagem)
+│   ├── providers.tsx       # UserProvider
+│   └── globals.css         # Estilos globais e tema
+├── components/             # Componentes reutilizáveis
+│   └── CharacterCard/
+├── context/                # React Context (UserContext)
+├── features/               # Módulos por funcionalidade
+├── lib/                    # Utilitários e dados
+│   ├── data/               # Personagens e usuário (mock)
+│   └── schemas/            # Schemas Zod (Character, User)
+└── __tests__/              # Testes unitários (Jest)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## API interna (Route Handlers)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `GET /api/characters` – Lista todos os personagens.
+- `GET /api/characters/[id]` – Retorna um personagem por ID (404 se não existir).
+- `GET /api/user` – Retorna o usuário padrão usado no perfil.
+
+Os dados vêm de `src/lib/data` (sem banco de dados).
+
+## Testes
+
+Os testes estão em `src/__tests__/` e validam os schemas Zod (Character e User). Convenção: testes em `src/__tests__/` ou ao lado do módulo (`*.test.ts` / `*.test.tsx`).
+
+```bash
+npm run test
+npm run test:watch
+```
+
+## Ajustes finais (acessibilidade e estados)
+
+- **Skip link** – "Pular para o conteúdo" visível ao focar com teclado.
+- **Foco visível** – Links, botões e campos com `outline` em `:focus-visible`.
+- **Labels e ARIA** – Formulários com `<label>`, cards com `aria-label` ("Ver detalhes de …"), mensagens de erro com `role="alert"`, loading com `role="status"`.
+- **Estados visuais** – Listagem: estado vazio ("Nenhum personagem disponível"); perfil: loading ("Carregando…") e erro com fallback; detalhe do personagem: `loading.tsx` (skeleton + "Carregando…"), `error.tsx` (Tentar novamente) e `not-found.tsx` (link para listagem).
+- **Consistência** – Botões e links de ação com mesmo padrão de foco e tema claro/escuro em todas as páginas.
+
+## Qualidade de código
+
+- **ESLint** – Regras do Next.js + Prettier.
+- **Prettier** – Formatação consistente.
+- **Husky + lint-staged** – Pre-commit: formatação e lint nos arquivos staged.
+
+## Deploy
+
+O projeto pode ser implantado em qualquer plataforma que suporte Next.js (por exemplo [Vercel](https://vercel.com)). Use `npm run build` e sirva com `npm run start` ou o comando equivalente do host.
+
+---
+
+Construído com [Next.js](https://nextjs.org) e [React](https://react.dev).

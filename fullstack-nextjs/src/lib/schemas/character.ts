@@ -12,6 +12,7 @@ export const characterSchema = z.object({
   content: z.string().min(1, "Descrição é obrigatória"),
   image: z.string().url().optional(),
   createdAt: z.string().optional(),
+  restricted: z.boolean().optional().default(false),
 });
 
 export type Character = z.output<typeof characterSchema>;
