@@ -1,0 +1,96 @@
+.card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover .name,
+.link:focus-visible .name {
+  text-decoration: underline;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 400 / 240;
+  background: var(--card-image-bg, #e8e8e8);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 400 / 240;
+  background: var(--card-image-bg, #e0e0e0);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    --card-bg: #1a1a1a;
+    --card-image-bg: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.content {
+  padding: 1rem 1.25rem;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.race {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem 0;
+}
+
+.excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0.875rem 1rem;
+  }
+
+  .name {
+    font-size: 1.125rem;
+  }
+
+  .excerpt {
+    -webkit-line-clamp: 2;
+  }
+}
