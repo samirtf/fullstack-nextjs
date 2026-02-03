@@ -1,5 +1,22 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project structure
+
+Code is organized by functional responsibility:
+
+- **`src/app/`** – Pages and routes (Next.js App Router)
+- **`src/components/`** – Reusable UI components
+- **`src/features/`** – Feature-specific modules
+- **`src/context/`** – React Context API (state)
+- **`src/lib/`** – Utilities and helpers
+- **`src/__tests__/`** – Unit tests for components and logic (test files may also live next to modules as `*.test.ts` / `*.test.tsx`)
+
+## Test convention
+
+- Unit tests for components and logic; focus on reliability and maintainability.
+- Tests live in `src/__tests__/` or colocated next to the module (e.g. `Component.test.tsx`).
+- Test runner and setup (e.g. Jest + Testing Library) will be configured when tests are added.
+
 ## Getting Started
 
 First, run the development server:
