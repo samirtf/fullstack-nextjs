@@ -4,10 +4,43 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useReducer,
   type ReactNode,
 } from "react";
 import type { User } from "@/lib/schemas";
+
+const STORAGE_KEY = "user-session";
+
+function loadStoredUser(): User | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as unknown;
+    if (
+      parsed &&
+      typeof parsed === "object" &&
+      "id" in parsed &&
+      "name" in parsed &&
+      "email" in parsed
+    ) {
+      return parsed as User;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+function saveStoredUser(user: User | null) {
+  if (typeof window === "undefined") return;
+  if (user) {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  } else {
+    sessionStorage.removeItem(STORAGE_KEY);
+  }
+}
 
 type UserState = {
   user: User | null;
@@ -16,6 +49,7 @@ type UserState = {
 type UserAction =
   | { type: "LOGIN"; payload: User }
   | { type: "LOGOUT" }
+  | { type: "RESTORE"; payload: User | null }
   | {
       type: "UPDATE_USER";
       payload: Partial<Pick<User, "name" | "email" | "avatar">>;
@@ -27,6 +61,8 @@ function userReducer(state: UserState, action: UserAction): UserState {
       return { user: action.payload };
     case "LOGOUT":
       return { user: null };
+    case "RESTORE":
+      return { user: action.payload };
     case "UPDATE_USER":
       if (!state.user) return state;
       return {
@@ -51,11 +87,18 @@ const initialState: UserState = { user: null };
 export function UserProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
+  useEffect(() => {
+    const stored = loadStoredUser();
+    if (stored) dispatch({ type: "RESTORE", payload: stored });
+  }, []);
+
   const login = useCallback((user: User) => {
+    saveStoredUser(user);
     dispatch({ type: "LOGIN", payload: user });
   }, []);
 
   const logout = useCallback(() => {
+    saveStoredUser(null);
     dispatch({ type: "LOGOUT" });
   }, []);
 
@@ -65,6 +108,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
     },
     []
   );
+
+  useEffect(() => {
+    if (state.user) saveStoredUser(state.user);
+  }, [state.user]);
 
   const value: UserContextValue = {
     user: state.user,

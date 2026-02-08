@@ -111,6 +111,10 @@
   white-space: pre-line;
 }
 
+.likeDislike {
+  padding-top: 0.5rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .content {
     border-top-color: rgba(255, 255, 255, 0.1);

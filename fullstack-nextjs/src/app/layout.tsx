@@ -33,7 +33,7 @@ export default function RootLayout({
           </a>
           <nav className="nav" aria-label="Principal">
             <Link href="/">Início</Link>
-            <Link href="/perfil">Perfil</Link>
+            <Link href="/perfil">Meu Perfil</Link>
           </nav>
           {children}
         </Providers>

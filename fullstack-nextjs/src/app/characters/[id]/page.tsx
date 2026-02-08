@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { characters, getCharacterById } from "@/lib/data";
 import { CharacterDetailGuard } from "@/components/CharacterDetailGuard";
+import { CharacterLikeDislike } from "@/components/CharacterLikeDislike";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -83,6 +84,9 @@ export default async function CharacterPage({ params }: PageProps) {
             <div className={styles.content}>
               <h2 className={styles.contentTitle}>Sobre o personagem</h2>
               <p className={styles.contentBody}>{content}</p>
+            </div>
+            <div className={styles.likeDislike}>
+              <CharacterLikeDislike characterId={character.id} />
             </div>
           </article>
         </CharacterDetailGuard>

@@ -77,8 +77,16 @@ src/
 - `GET /api/characters` – Lista todos os personagens.
 - `GET /api/characters/[id]` – Retorna um personagem por ID (404 se não existir).
 - `GET /api/user` – Retorna o usuário padrão usado no perfil.
+- `POST /api/auth/login` – Autenticação simulada (e-mail e senha).
 
 Os dados vêm de `src/lib/data` (sem banco de dados).
+
+## Login (credenciais de teste)
+
+| Usuário | E-mail | Senha |
+| ------- | ------ | ----- |
+| admin | admin@exemplo.com | 123456 |
+| user | user@exemplo.com | 123456 |
 
 ## Testes
 

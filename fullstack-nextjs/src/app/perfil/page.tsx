@@ -1,49 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 export default function PerfilPage() {
-  const { user, login, logout, updateUser } = useUser();
+  const { user, logout, updateUser } = useUser();
+  const router = useRouter();
   const [name, setName] = useState(user?.name ?? "");
   const [email, setEmail] = useState(user?.email ?? "");
   const [avatar, setAvatar] = useState(user?.avatar ?? "");
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [saveLoading, setSaveLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSimularLogin = useCallback(async () => {
-    setError(null);
-    setIsLoading(true);
-    try {
-      const res = await fetch("/api/user");
-      if (!res.ok) throw new Error("Falha ao buscar usuário");
-      const data = await res.json();
-      login(data);
-      setName(data.name);
-      setEmail(data.email);
-      setAvatar(data.avatar ?? "");
-    } catch {
-      setError(
-        "Não foi possível carregar o perfil. Usando dados de demonstração."
-      );
-      // Fallback: usar dados locais se a API falhar
-      login({
-        id: "user-1",
-        name: "Usuário Demo",
-        email: "demo@exemplo.com",
-        avatar: "https://placehold.co/100x100?text=Demo",
-      });
-      setName("Usuário Demo");
-      setEmail("demo@exemplo.com");
-      setAvatar("https://placehold.co/100x100?text=Demo");
-    } finally {
-      setIsLoading(false);
+  useEffect(() => {
+    if (!user) {
+      router.replace("/login?from=/perfil");
     }
-  }, [login]);
+  }, [user, router]);
 
   const handleLogout = useCallback(() => {
     logout();
@@ -78,30 +55,7 @@ export default function PerfilPage() {
   }, [user]);
 
   if (!user) {
-    return (
-      <div className={styles.page}>
-        <main id="main" className={styles.main}>
-          <h1 className={styles.title}>Perfil</h1>
-          <p className={styles.message}>
-            Você não está logado. Use o botão abaixo para simular o login.
-          </p>
-          {error && (
-            <p className={styles.errorMessage} role="alert">
-              {error}
-            </p>
-          )}
-          <button
-            type="button"
-            onClick={handleSimularLogin}
-            className={styles.primaryButton}
-            disabled={isLoading}
-            aria-busy={isLoading}
-          >
-            {isLoading ? "Carregando…" : "Simular login"}
-          </button>
-        </main>
-      </div>
-    );
+    return null;
   }
 
   return (

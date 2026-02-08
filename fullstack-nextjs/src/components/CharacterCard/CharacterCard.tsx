@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Character } from "@/lib/schemas";
+import { CharacterLikeDislike } from "@/components/CharacterLikeDislike";
 import styles from "./CharacterCard.module.css";
 
 type CharacterCardProps = {
@@ -23,7 +24,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
               src={image}
               alt={`Ilustração de ${name}`}
               width={400}
-              height={240}
+              height={280}
               className={styles.image}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
@@ -37,6 +38,9 @@ export function CharacterCard({ character }: CharacterCardProps) {
           <p className={styles.excerpt}>{excerpt}</p>
         </div>
       </Link>
+      <div className={styles.actions}>
+        <CharacterLikeDislike characterId={id} />
+      </div>
     </article>
   );
 }
