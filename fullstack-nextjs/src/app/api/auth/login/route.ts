@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 import { usersWithCredentials } from "@/lib/data/users";
 
-/**
- * POST /api/auth/login
- * Autenticação simulada: valida email e senha contra usuários locais.
- */
 export async function POST(request: Request) {
+  console.log("login api");
   try {
     const body = await request.json();
     const { email, password } = body as { email?: string; password?: string };
@@ -29,8 +26,10 @@ export async function POST(request: Request) {
     }
 
     const { password: _, ...user } = found;
+    console.log("logou", found.email);
     return NextResponse.json(user);
-  } catch {
+  } catch (e) {
+    console.log("excecao:", e);
     return NextResponse.json(
       { error: "Requisição inválida" },
       { status: 400 }

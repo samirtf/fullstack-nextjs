@@ -1,19 +1,14 @@
 import { characterArraySchema, type Character } from "@/lib/schemas";
 
-/**
- * Os nove membros da Sociedade do Anel, formada no Conselho de Elrond
- * para destruir o Um Anel, representando os Povos Livres da Terra-média.
- */
 const rawCharacters: Character[] = [
   {
     id: "frodo",
     name: "Frodo Bolseiro",
     race: "Hobbit",
     restricted: false,
-    excerpt:
-      "Portador do Um Anel. Encargado de levá-lo até Mordor para ser destruído nas Fendas da Perdição.",
+    excerpt: "O que carrega o anel ate Mordor. Pra mim o personagem mais transformado pela jornada.",
     content:
-      "Frodo Bolseiro é um hobbit da Terra-média, sobrinho de Bilbo. Recebeu o Um Anel e partiu do Condado em uma jornada até Mordor para destruí-lo na Montanha da Perdição. Apesar da carga terrível do Anel, manteve a coragem e a lealdade aos companheiros da Sociedade do Anel.",
+      "Frodo e o hobbit que herdou o anel do Bilbo e teve que ir ate as Fendas da Perdição. A responsabilidade de carregar aquilo foi gigante — muita gente discute se ele ou o Sam e o verdadeiro heroi. Ele acaba partindo pra Valinor no fim, nao aguenta mais a Terra-media depois de tudo.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/9/94/Elijah_Wood_at_the_2025_Sundance_Film_Festival.jpg",
     createdAt: "2025-01-15T10:00:00.000Z",
@@ -23,9 +18,9 @@ const rawCharacters: Character[] = [
     name: 'Samwise "Sam" Gamgi',
     race: "Hobbit",
     restricted: false,
-    excerpt: "Jardineiro e fiel companheiro de Frodo na jornada até Mordor.",
+    excerpt: "Jardineiro do Frodo. Pra muita gente o verdadeiro heroi da historia.",
     content:
-      "Samwise Gamgi, ou Sam, é o jardineiro de Frodo e seu companheiro mais leal. Acompanha Frodo até o Monte da Perdição e, quando Frodo é capturado, assume temporariamente o Anel. É considerado o verdadeiro herói da missão.",
+      "Sam e o amigo que todo mundo queria. Lealdade tipo anjo da guarda. Ele que segura as pontas quando o Frodo nao aguenta, carrega o anel quando precisa, e no fim volta pro Condado e casa com a Rosie. Tem uns que preferem o Frodo mas a força do Sam e inabalavel.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/a/a4/Sean_Astin_1.jpg",
     createdAt: "2025-02-01T08:00:00.000Z",
@@ -35,10 +30,9 @@ const rawCharacters: Character[] = [
     name: 'Meriadoc "Merry" Brandebuque',
     race: "Hobbit",
     restricted: false,
-    excerpt:
-      "Hobbit do Condado, membro da Sociedade do Anel. Amigo de Pippin e dos demais.",
+    excerpt: "Hobbit, amigo do Pippin. Fica do lado do Rei Theoden em Rohan.",
     content:
-      "Meriadoc Brandebuque, conhecido como Merry, é um hobbit que se junta à Sociedade do Anel. Junto com Pippin, parte na missão de escoltar Frodo. Destaca-se pela lealdade e pela coragem nos eventos da Guerra do Anel.",
+      "Merry faz dupla com o Pippin. Os dois sao mais jovens e meio atrapalhados no comeco mas amadurecem. Ele ajuda a Eowyn a derrubar o Rei Bruxo — a profecia dizia que nao seria morto por mão de homem, e ela e mulher. Coragem de sobra.",
     image:
       "https://64.media.tumblr.com/45d4b08f60ab2a02bec31fab971b9df3/tumblr_obbj0dqhCo1v8heu6o1_1280.jpg",
     createdAt: "2025-02-02T10:00:00.000Z",
@@ -48,10 +42,9 @@ const rawCharacters: Character[] = [
     name: 'Peregrin "Pippin" Tûk',
     race: "Hobbit",
     restricted: false,
-    excerpt:
-      "Hobbit do Condado, o mais jovem dos quatro companheiros da Sociedade.",
+    excerpt: "O mais novo dos quatro hobbits. Meio atrapalhado mas cumpre o papel.",
     content:
-      "Peregrin Tûk, ou Pippin, é um hobbit que integra a Sociedade do Anel ao lado de Merry, Sam e Frodo. Apesar da juventude e da irreverência, amadurece ao longo da jornada e cumpre um papel decisivo no desfecho da guerra.",
+      "Pippin comete uns erros (olha a palantir) mas no fim ajuda demais. Serviu ao Denethor em Gondor e viu a loucura do regente. Jovem e irreverente no inicio, amadurece na guerra. Dupla classica com o Merry.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/b/bd/Billy_Boyd.jpg",
     createdAt: "2025-02-02T10:00:00.000Z",
@@ -61,10 +54,9 @@ const rawCharacters: Character[] = [
     name: "Gandalf, o Cinzento",
     race: "Mago",
     restricted: false,
-    excerpt:
-      "Um dos cinco Istari enviados à Terra-média para combater Sauron. Lidera a Sociedade.",
+    excerpt: "O mago. Lidera a galera. Cai na ponte de Khazad-dum e volta branco.",
     content:
-      "Gandalf, o Cinzento, é um dos Magos (Istari) enviados pelos Valar à Terra-média. Lidera a Sociedade do Anel e enfrenta o Balrog nas minas de Moria, retornando como Gandalf, o Branco. Guia os povos livres na Guerra do Anel.",
+      "Gandalf pra mim e um dos mais fodas. Istari, veio dos Valar pra combater o Sauron. Morre lutando com o Balrog em Moria e volta como Gandalf o Branco, mais forte. Guia todo mundo na guerra. O Ian McKellen mandou bem demais no filme.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/e/e4/Ian_McKellen_by_Gage_Skidmore.jpg",
     createdAt: "2025-01-20T14:30:00.000Z",
@@ -74,9 +66,9 @@ const rawCharacters: Character[] = [
     name: "Aragorn",
     race: "Humano",
     restricted: false,
-    excerpt: "Herdeiro de Isildur, Rei de Gondor e líder dos Dúnedain.",
+    excerpt: "Passolongo. Herdeiro de Isildur, vira rei de Gondor no final.",
     content:
-      "Aragorn, também conhecido como Passolongo, é o herdeiro da linhagem de Isildur e rei de Gondor. Guia os hobbits e, após a Guerra do Anel, é coroado Rei Elessar. Casou-se com Arwen Undómiel.",
+      "Aragorn andava disfarçado de ranger antes de assumir. Guia os hobbits, lidera os exercitos. No retorno do rei ele e coroado Elessar e casa com a Arwen. Viggo Mortensen ficou lendario no papel.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/d/d5/Viggo_Mortensen_2025.jpg",
     createdAt: "2025-01-25T09:00:00.000Z",
@@ -86,10 +78,9 @@ const rawCharacters: Character[] = [
     name: "Boromir",
     race: "Humano",
     restricted: false,
-    excerpt:
-      "Guerreiro de Gondor, filho do Regente Denethor. Membro da Sociedade do Anel.",
+    excerpt: "Guerreiro de Gondor. Quer o anel pra defender a cidade, cai em tentacao.",
     content:
-      "Boromir é um homem de Gondor, filho do Regente Denethor. Junta-se à Sociedade do Anel para defender os Povos Livres. Sua luta interna com a tentação do Anel e seu sacrifício em defesa de Merry e Pippin marcam a história da comitiva.",
+      "Boromir e filho do Denethor. Quer pegar o anel e usar em Gondor — a tentacao pega ele. Se arrepende e morre defendendo o Merry e o Pippin dos orcs. Cena triste. O irmao Faramir e diferente, resiste quando encontra o Frodo.",
     image:
       "https://movies948.wordpress.com/wp-content/uploads/2016/07/wp-1467939296257.jpeg",
     createdAt: "2025-02-03T09:00:00.000Z",
@@ -99,10 +90,9 @@ const rawCharacters: Character[] = [
     name: "Legolas",
     race: "Elfo",
     restricted: false,
-    excerpt:
-      "Príncipe élfico do Reino da Floresta (Floresta Negra). Membro da Sociedade do Anel.",
+    excerpt: "Elfo da Floresta Negra. Pontaria absurda, amigo do Gimli.",
     content:
-      "Legolas é um elfo do Reino da Floresta, filho do rei Thranduil. Junta-se à Sociedade do Anel e destaca-se pela pontaria e pelos sentidos aguçados. Após a queda de Sauron, parte para o Oeste com Gimli.",
+      "Legolas e príncipe elfico, filho do Thranduil. Mata orc pra caramba, sentidos agucados. No comeco o Gimli nao confiava nos elfos mas viram melhores amigos — no fim os dois vao pro Oeste juntos. Orlando Bloom estourou na epoca.",
     image:
       "https://static0.colliderimages.com/wordpress/wp-content/uploads/2025/04/legolas-orlando-bloom-lord-of-the-rings-lotr-featured.jpg",
     createdAt: "2025-01-28T11:00:00.000Z",
@@ -112,10 +102,9 @@ const rawCharacters: Character[] = [
     name: "Gimli, filho de Glóin",
     race: "Anão",
     restricted: false,
-    excerpt:
-      "Anão, filho de Glóin. Membro da Sociedade do Anel; grande amigo de Legolas.",
+    excerpt: "Anao, desconfiava de elfo. Vira amigao do Legolas.",
     content:
-      "Gimli é um anão, filho de Glóin, que integra a Sociedade do Anel. Inicialmente desconfiado dos elfos, torna-se grande amigo de Legolas. Representa os anões entre os Povos Livres e, após a guerra, parte para o Oeste com Legolas.",
+      "Gimli comeca desconfiando dos elfos (rivalidade classica) mas no meio da jornada e o Legolas viram irmaos. Ele pede um fio de cabelo da Galadriel. Unico anao que vai pro Oeste no barco no final.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/1/16/John_Rhys-Davies_%287982317637%29.jpg",
     createdAt: "2025-02-03T11:00:00.000Z",
@@ -124,10 +113,9 @@ const rawCharacters: Character[] = [
     id: "elrond",
     name: "Elrond",
     race: "Meio-elfo",
-    excerpt:
-      "Senhor de Valfenda. Convocou o Conselho de Elrond e abrigou a Sociedade do Anel.",
+    excerpt: "Senhor de Valfenda. Foi la que decidiram destruir o anel.",
     content:
-      "Elrond é um meio-elfo, senhor de Valfenda (Imladris). Convocou o Conselho de Elrond, no qual se decidiu a destruição do Um Anel. Abrigou Frodo após a ferida da lâmina de Morgul e ofereceu refúgio à Sociedade antes da partida para o Sul.",
+      "Elrond recebe a sociedade em Valfenda (Imladris). O conselho dele e que define a missao. Cura o Frodo da lâmina de Morgul. Meio-elfo, sabio pra caramba. No filme o Hugo Weaving faz o papel.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/f/f6/Hugo_Weaving_2011.jpg",
     createdAt: "2025-02-10T10:00:00.000Z",
@@ -137,10 +125,9 @@ const rawCharacters: Character[] = [
     id: "galadriel",
     name: "Galadriel",
     race: "Elfa",
-    excerpt:
-      "Senhora de Lórien. Uma dos mais poderosos elfos da Terra-média; dá os presentes à comitiva.",
+    excerpt: "Senhora de Lorien. Poderosa, da os presentes pro grupo.",
     content:
-      "Galadriel é a senhora do reino élfico de Lórien. Uma dos mais poderosos elfos da Terra-média, recebe a Sociedade do Anel e oferece presentes que serão decisivos na jornada. Recusa o Anel quando Frodo lho oferece, demonstrando sabedoria e renúncia.",
+      "Galadriel reina em Lorien. Quando o Frodo oferece o anel ela recusa — cena tensa. Ela da os presentes que salvam a missao (a luz, etc). Uma das mais poderosas da Terra-media. A Cate Blanchett no filme e perfeita.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTixFm4iJya_aQLWFb257fIYyU2f0jbVxz-3g&s",
     createdAt: "2025-02-10T10:00:00.000Z",
@@ -150,10 +137,9 @@ const rawCharacters: Character[] = [
     id: "gollum",
     name: "Gollum (Sméagol)",
     race: "Criatura (ex-hobbit)",
-    excerpt:
-      "Ex-portador do Um Anel. Guia Frodo e Sam até Mordor, mas a obsessão pelo Anel o leva à traição.",
+    excerpt: "Ex-hobbit corrompido pelo anel. Guia e trai o Frodo e o Sam.",
     content:
-      "Gollum, outrora Sméagol, era um hobbit da região dos Campos de Lis. Encontrou o Um Anel e foi por ele corrompido. Após perder o Anel para Bilbo, passa a perseguir Frodo. Guia Frodo e Sam até Mordor, mas sua dualidade e obsessão pelo Anel levam à traição nas Fendas da Perdição.",
+      "Gollum era o Sméagol, hobbit dos Campos de Lis. Achou o anel e foi corrompido. Depois que o Bilbo leva ele fica obcecado. Guia o Frodo e o Sam ate Mordor mas no final a obsessao vence e ele acaba caindo nas Fendas com o anel. Tragico.",
     image:
       "https://variety.com/wp-content/uploads/2021/12/Lord-of-the-Rings-Return-of-the-King.jpg?w=1000&h=565&crop=1",
     createdAt: "2025-02-10T10:00:00.000Z",
@@ -163,10 +149,9 @@ const rawCharacters: Character[] = [
     id: "faramir",
     name: "Faramir",
     race: "Humano",
-    excerpt:
-      "Capitão de Gondor, irmão de Boromir. Encontra Frodo e Sam em Ithilien e resiste à tentação do Anel.",
+    excerpt: "Irmao do Boromir. Capitão em Gondor, resiste ao anel.",
     content:
-      "Faramir é o segundo filho do Regente Denethor e irmão de Boromir. Capitão de Gondor, comanda os rangers de Ithilien. Ao encontrar Frodo e Sam, reconhece a missão e resiste à tentação do Anel, diferentemente de seu irmão. Casa-se com Éowyn após a Guerra do Anel.",
+      "Faramir e o outro filho do Denethor. Diferente do Boromir — quando encontra o Frodo e o Sam em Ithilien nao leva o anel. Reconhece a missao e deixa eles irem. No fim casa com a Eowyn. Personagem subestimado.",
     image:
       "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/10/Lord-Of-The-Rings-Faramir.jpg?w=1200&h=675&fit=crop",
     createdAt: "2025-02-10T10:00:00.000Z",
@@ -176,10 +161,9 @@ const rawCharacters: Character[] = [
     id: "eowyn",
     name: "Éowyn",
     race: "Humana",
-    excerpt:
-      "Sobrinha do rei Théoden de Rohan. Derrota o Rei Bruxo de Angmar com a ajuda de Merry.",
+    excerpt: "Sobrinha do Theoden. Mata o Rei Bruxo com ajuda do Merry.",
     content:
-      "Éowyn é sobrinha de Théoden, rei de Rohan. Deseja lutar na guerra em vez de permanecer nas sombras. Disfarçada, parte para a Batalha dos Campos de Pelennor e, com a ajuda de Merry, derrota o Rei Bruxo de Angmar, cumprindo a profecia de que não seria morto por mão de homem.",
+      "Eowyn queria lutar em vez de ficar em casa. Se disfarça e vai pros Campos de Pelennor. A profecia dizia que o Rei Bruxo nao morreria por mão de homem — ela e mulher, e com o Merry derruba ele. Cena epica. Depois casa com o Faramir.",
     image:
       "https://m.media-amazon.com/images/M/MV5BMGNhMGZjYzEtNGZiMy00NjUyLTgyNzYtOGVjMDk1ZDI5MjFjXkEyXkFqcGc@._V1_QL75_UX328_.jpg",
     createdAt: "2025-02-10T10:00:00.000Z",
@@ -191,5 +175,6 @@ export const characters: Character[] =
   characterArraySchema.parse(rawCharacters);
 
 export function getCharacterById(id: string): Character | undefined {
+  console.log("get char by id", id);
   return characters.find((character) => character.id === id);
 }

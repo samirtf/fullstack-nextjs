@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Character } from "@/lib/schemas";
-import { CharacterLikeDislike } from "@/components/CharacterLikeDislike";
+import { CharacterLikeDislike } from "@/components/CharacterLikeDislike/CharacterLikeDislike";
 import styles from "./CharacterCard.module.css";
 
 type CharacterCardProps = {
@@ -10,14 +10,11 @@ type CharacterCardProps = {
 
 export function CharacterCard({ character }: CharacterCardProps) {
   const { id, name, race, excerpt, image } = character;
+  console.log("card", name);
 
   return (
     <article className={styles.card}>
-      <Link
-        href={`/characters/${id}`}
-        className={styles.link}
-        aria-label={`Ver detalhes de ${name}`}
-      >
+      <Link href={`/characters/${id}`} className={styles.link}>
         {image ? (
           <div className={styles.imageWrapper}>
             <Image
@@ -30,7 +27,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
             />
           </div>
         ) : (
-          <div className={styles.imagePlaceholder} aria-hidden="true" />
+          <div className={styles.imagePlaceholder} />
         )}
         <div className={styles.content}>
           <h2 className={styles.name}>{name}</h2>

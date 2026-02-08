@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useCharacterPreferences } from "@/context/CharacterPreferencesContext";
 import { useUser } from "@/context/UserContext";
 import type { Character } from "@/lib/schemas";
-import { CharacterCard } from "@/components/CharacterCard";
+import { CharacterCard } from "@/components/CharacterCard/CharacterCard";
 import styles from "./CharacterList.module.css";
 
 type CharacterListProps = {
@@ -23,10 +23,6 @@ function sortByPreference(
   });
 }
 
-/**
- * Lista de personagens filtrada por login: restritos só aparecem quando o usuário está logado.
- * Quando logado, personagens favoritados (coração) aparecem primeiro.
- */
 export function CharacterList({ characters }: CharacterListProps) {
   const { user } = useUser();
   const { getPreference } = useCharacterPreferences();
@@ -36,11 +32,13 @@ export function CharacterList({ characters }: CharacterListProps) {
     return user ? sortByPreference(filtered, getPreference) : filtered;
   }, [characters, user, getPreference]);
 
+  console.log("lista tem", visibleCharacters.length, "chars");
+
   return (
-    <section className={styles.grid} aria-label="Lista de personagens">
+    <section className={styles.grid}>
       {visibleCharacters.length === 0 ? (
-        <p className={styles.empty} role="status">
-          Nenhum personagem disponível no momento.
+        <p className={styles.empty}>
+          Nada aqui ainda
         </p>
       ) : (
         visibleCharacters.map((character) => (

@@ -1,34 +1,34 @@
 import { userSchema } from "@/lib/schemas";
 
 describe("userSchema", () => {
-  it("valida usuário com todos os campos obrigatórios", () => {
+  it("aceita usuario valido com campos obrigatorios", () => {
     const valid = {
-      id: "user-1",
+      id: "u1",
       name: "João",
-      email: "joao@exemplo.com",
+      email: "joao@teste.com",
     };
     const result = userSchema.safeParse(valid);
     expect(result.success).toBe(true);
     if (result.success) {
       expect(result.data.name).toBe("João");
-      expect(result.data.email).toBe("joao@exemplo.com");
+      expect(result.data.email).toBe("joao@teste.com");
     }
   });
 
-  it("valida usuário com avatar opcional", () => {
+  it("aceita usuario com avatar opcional", () => {
     const valid = {
-      id: "user-2",
+      id: "u2",
       name: "Maria",
-      email: "maria@exemplo.com",
+      email: "maria@teste.com",
       avatar: "https://example.com/avatar.png",
     };
     const result = userSchema.safeParse(valid);
     expect(result.success).toBe(true);
   });
 
-  it("rejeita usuário com e-mail inválido", () => {
+  it("rejeita e-mail invalido", () => {
     const invalid = {
-      id: "user-1",
+      id: "u1",
       name: "João",
       email: "nao-e-email",
     };
@@ -36,11 +36,11 @@ describe("userSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejeita usuário sem nome", () => {
+  it("rejeita usuario sem nome", () => {
     const invalid = {
-      id: "user-1",
+      id: "u1",
       name: "",
-      email: "joao@exemplo.com",
+      email: "joao@teste.com",
     };
     const result = userSchema.safeParse(invalid);
     expect(result.success).toBe(false);

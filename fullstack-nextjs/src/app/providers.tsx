@@ -1,5 +1,6 @@
 "use client";
 
+// todo: unificar com user context se crescer
 import { CharacterPreferencesProvider } from "@/context/CharacterPreferencesContext";
 import { UserProvider, useUser } from "@/context/UserContext";
 import type { ReactNode } from "react";

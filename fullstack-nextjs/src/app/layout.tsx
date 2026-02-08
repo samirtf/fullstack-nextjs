@@ -31,7 +31,7 @@ export default function RootLayout({
           <a href="#main" className="skipLink">
             Pular para o conteúdo
           </a>
-          <nav className="nav" aria-label="Principal">
+          <nav className="nav">
             <Link href="/">Início</Link>
             <Link href="/perfil">Meu Perfil</Link>
           </nav>

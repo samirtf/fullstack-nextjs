@@ -2,28 +2,27 @@ import { userSchema, type User } from "@/lib/schemas";
 
 type UserWithCredentials = User & { password: string };
 
+function withoutPassword(u: UserWithCredentials): User {
+  const { password: _, ...user } = u;
+  return userSchema.parse(user);
+}
+
 const usersWithCredentials: UserWithCredentials[] = [
   {
     id: "admin",
-    name: "Administrador",
-    email: "admin@exemplo.com",
-    avatar: "https://placehold.co/100x100?text=Admin",
-    password: "123456",
+    name: "Samir",
+    email: "samir.admin@demo.app",
+    password: "Anel123!",
   },
   {
-    id: "user",
-    name: "Usuário",
-    email: "user@exemplo.com",
-    avatar: "https://placehold.co/100x100?text=User",
-    password: "123456",
+    id: "frodo",
+    name: "Frodo",
+    email: "frodo@condado.terra",
+    password: "Anel123!",
   },
 ];
 
-// Validação dos usuários contra o schema (sem password no output)
-const validatedUsers = usersWithCredentials.map((u) => {
-  const { password: _, ...user } = u;
-  return userSchema.parse(user);
-});
+const validatedUsers = usersWithCredentials.map(withoutPassword);
 
 export const defaultUser: User = validatedUsers[0];
 

@@ -10,15 +10,12 @@ type CharacterDetailGuardProps = {
   children: React.ReactNode;
 };
 
-/**
- * Para personagens restritos, exibe o conteúdo só quando o usuário está logado.
- * Caso contrário, mostra mensagem para fazer login.
- */
 export function CharacterDetailGuard({
   character,
   children,
 }: CharacterDetailGuardProps) {
   const { user } = useUser();
+  console.log("guard", character.restricted, user ? "logado" : "nao");
 
   if (character.restricted && !user) {
     return (

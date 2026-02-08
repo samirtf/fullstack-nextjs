@@ -5,6 +5,7 @@
   --text-muted: #555555;
 }
 
+/* tema dark basico pelo sistema */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0d0d0d;
@@ -39,7 +40,6 @@ a {
   text-decoration: none;
 }
 
-/* Acessibilidade: foco visível para teclado */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -49,7 +49,6 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* Skip link: visível apenas ao receber foco */
 .skipLink {
   position: absolute;
   top: -100px;

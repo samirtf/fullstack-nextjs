@@ -1,14 +1,31 @@
 # Personagens do Senhor dos Anéis
 
-Aplicação [Next.js](https://nextjs.org) que exibe os nove membros da **Sociedade do Anel**: listagem na página inicial, páginas de detalhes por personagem e uma área de perfil de usuário com edição e simulação de login.
+Side project para estudar Next.js App Router com um tema que gosto. Exibe os nove membros da **Sociedade do Anel**: listagem, detalhes por personagem e perfil com login mockado. Escolhi o tema Senhor dos Anéis por ser um universo com personagens bem definidos para modelagem.
 
 ## Funcionalidades
 
 - **Início** – Listagem em grid dos personagens (Hobbits, Homens, Mago, Elfo e Anão) com cards clicáveis.
 - **Detalhes** – Página por personagem com imagem, raça, resumo e texto completo; geração estática com revalidação (ISR).
-- **Perfil** – Simulação de login (dados da API), exibição e edição de nome, e-mail e avatar.
-- **Acessibilidade** – Skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de loading/erro.
+- **Perfil** – Login com dados mock, exibição e edição de nome, e-mail e avatar.
+- Acessibilidade – Skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de loading/erro.
 - **Tema** – Suporte a tema claro/escuro conforme preferência do sistema.
+
+## Decisões de Arquitetura
+
+- Optei por Context API em vez de Redux para manter o projeto simples.
+- Os dados são mockados para evitar dependência de backend nesta etapa.
+- sessionStorage foi escolhido em vez de localStorage para manter a sessão apenas durante a navegação.
+- O projeto prioriza simplicidade em vez de escalabilidade neste momento.
+- Context separado pra preferências pra nao misturar com user; depois daria pra juntar.
+
+## Evolução
+
+**v1** – Listagem de personagens estática  
+**v2** – Página de detalhes com SSG  
+**v3** – Login mockado, preferências por usuário  
+**v4** – Último personagem visitado (sessionStorage)
+
+**Próximos passos:** Backend real, persistência em banco, filtros por personagem.
 
 ## Pré-requisitos
 
@@ -65,7 +82,6 @@ src/
 ├── components/             # Componentes reutilizáveis
 │   └── CharacterCard/
 ├── context/                # React Context (UserContext)
-├── features/               # Módulos por funcionalidade
 ├── lib/                    # Utilitários e dados
 │   ├── data/               # Personagens e usuário (mock)
 │   └── schemas/            # Schemas Zod (Character, User)
@@ -77,16 +93,16 @@ src/
 - `GET /api/characters` – Lista todos os personagens.
 - `GET /api/characters/[id]` – Retorna um personagem por ID (404 se não existir).
 - `GET /api/user` – Retorna o usuário padrão usado no perfil.
-- `POST /api/auth/login` – Autenticação simulada (e-mail e senha).
+- `POST /api/auth/login` – Valida e-mail e senha contra usuários mock.
 
 Os dados vêm de `src/lib/data` (sem banco de dados).
 
-## Login (credenciais de teste)
+## Contas de teste
 
 | Usuário | E-mail | Senha |
 | ------- | ------ | ----- |
-| admin | admin@exemplo.com | 123456 |
-| user | user@exemplo.com | 123456 |
+| samir | samir.admin@demo.app | Anel123! |
+| frodo | frodo@condado.terra | Anel123! |
 
 ## Testes
 
@@ -97,15 +113,23 @@ npm run test
 npm run test:watch
 ```
 
-## Ajustes finais (acessibilidade e estados)
+## Observações
 
-- **Skip link** – "Pular para o conteúdo" visível ao focar com teclado.
-- **Foco visível** – Links, botões e campos com `outline` em `:focus-visible`.
-- **Labels e ARIA** – Formulários com `<label>`, cards com `aria-label` ("Ver detalhes de …"), mensagens de erro com `role="alert"`, loading com `role="status"`.
-- **Estados visuais** – Listagem: estado vazio ("Nenhum personagem disponível"); perfil: loading ("Carregando…") e erro com fallback; detalhe do personagem: `loading.tsx` (skeleton + "Carregando…"), `error.tsx` (Tentar novamente) e `not-found.tsx` (link para listagem).
-- **Consistência** – Botões e links de ação com mesmo padrão de foco e tema claro/escuro em todas as páginas.
+Skip link, foco visível e ARIA estão no código. Estados vazios, loading e erro tratados nas telas.
 
-## Qualidade de código
+## Sobre
+
+Projeto desenvolvido como exercício prático para consolidar conceitos de:
+
+- Next.js App Router
+- SSG/ISR
+- Context API
+- Route Handlers
+- Validação com Zod
+
+Tempo estimado de desenvolvimento: 10–15 horas. Projeto simples focado em aprendizado e prática.
+
+## Ferramentas
 
 - **ESLint** – Regras do Next.js + Prettier.
 - **Prettier** – Formatação consistente.
@@ -115,6 +139,3 @@ npm run test:watch
 
 O projeto pode ser implantado em qualquer plataforma que suporte Next.js (por exemplo [Vercel](https://vercel.com)). Use `npm run build` e sirva com `npm run start` ou o comando equivalente do host.
 
----
-
-Construído com [Next.js](https://nextjs.org) e [React](https://react.dev).

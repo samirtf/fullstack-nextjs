@@ -30,11 +30,13 @@ function LoginForm() {
           setError(data.error ?? "E-mail ou senha inválidos");
           return;
         }
+        console.log("user logged", data.email);
         login(data);
         const from = searchParams.get("from") ?? "/perfil";
         router.push(from);
-      } catch {
-        setError("Não foi possível conectar. Tente novamente.");
+      } catch (e) {
+        console.log("excecao:", e);
+        setError("Nao deu pra conectar, tenta de novo");
       } finally {
         setIsLoading(false);
       }
@@ -43,7 +45,7 @@ function LoginForm() {
   );
 
   const handleRegistrar = useCallback(() => {
-    setError("Cadastro não disponível no momento");
+    setError("Registro ainda nao disponivel");
   }, []);
 
   if (user) {

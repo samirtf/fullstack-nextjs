@@ -1,1 +1,0 @@
-export { CharacterDetailGuard } from "./CharacterDetailGuard";

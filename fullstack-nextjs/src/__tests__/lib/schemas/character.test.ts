@@ -1,7 +1,7 @@
 import { characterSchema, characterArraySchema } from "@/lib/schemas";
 
 describe("characterSchema", () => {
-  it("valida personagem com todos os campos obrigatórios", () => {
+  it("aceita personagem com campos obrigatorios", () => {
     const valid = {
       id: "frodo",
       name: "Frodo Bolseiro",
@@ -18,14 +18,14 @@ describe("characterSchema", () => {
     }
   });
 
-  it("valida personagem com campos opcionais", () => {
+  it("aceita personagem com campos opcionais", () => {
     const valid = {
-      id: "gandalf",
-      name: "Gandalf",
-      race: "Mago",
-      excerpt: "Um dos Istari.",
-      content: "Descrição do mago.",
-      image: "https://example.com/gandalf.png",
+      id: "p1",
+      name: "Personagem Teste",
+      race: "Humano",
+      excerpt: "Resumo",
+      content: "Conteudo longo aqui.",
+      image: "https://example.com/foto.png",
       createdAt: "2025-01-01T00:00:00.000Z",
     };
     const result = characterSchema.safeParse(valid);
@@ -101,21 +101,21 @@ describe("characterSchema", () => {
 });
 
 describe("characterArraySchema", () => {
-  it("valida array de personagens válidos", () => {
+  it("aceita array de personagens validos", () => {
     const valid = [
       {
-        id: "1",
-        name: "Frodo",
+        id: "a",
+        name: "Um",
         race: "Hobbit",
-        excerpt: "A",
-        content: "B",
+        excerpt: "Resumo A",
+        content: "Conteudo A",
       },
       {
-        id: "2",
-        name: "Gandalf",
+        id: "b",
+        name: "Dois",
         race: "Mago",
-        excerpt: "C",
-        content: "D",
+        excerpt: "Resumo B",
+        content: "Conteudo B",
       },
     ];
     const result = characterArraySchema.safeParse(valid);
@@ -125,18 +125,18 @@ describe("characterArraySchema", () => {
     }
   });
 
-  it("rejeita array com personagem inválido", () => {
+  it("rejeita array com personagem invalido", () => {
     const invalid = [
       {
-        id: "1",
-        name: "Frodo",
+        id: "a",
+        name: "Um",
         race: "Hobbit",
         excerpt: "A",
         content: "B",
       },
       {
         id: "",
-        name: "Gandalf",
+        name: "Dois",
         race: "Mago",
         excerpt: "C",
         content: "D",

@@ -29,7 +29,8 @@ function loadPreferences(userId: string | null): Record<string, Preference> {
       if (val === "like" || val === "dislike") result[id] = val;
     }
     return result;
-  } catch {
+  } catch (e) {
+    console.log("excecao:", e);
     return {};
   }
 }
@@ -38,8 +39,8 @@ function savePreferences(userId: string, prefs: Record<string, Preference>) {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(getStorageKey(userId), JSON.stringify(prefs));
-  } catch {
-    // ignore
+  } catch (e) {
+    console.log("excecao:", e);
   }
 }
 
@@ -73,7 +74,7 @@ export function CharacterPreferencesProvider({
   }, [userId]);
 
   useEffect(() => {
-    if (userId && Object.keys(preferences).length >= 0) {
+    if (userId) {
       savePreferences(userId, preferences);
     }
   }, [userId, preferences]);
@@ -87,6 +88,7 @@ export function CharacterPreferencesProvider({
 
   const setPreference = useCallback(
     (characterId: string, value: Preference | null) => {
+      console.log("pref", characterId, value);
       setPreferences((prev) => {
         const next = { ...prev };
         if (value === null) {

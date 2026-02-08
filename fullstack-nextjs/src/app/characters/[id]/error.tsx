@@ -11,15 +11,15 @@ type ErrorProps = {
 
 export default function CharacterError({ error, reset }: ErrorProps) {
   useEffect(() => {
-    console.error("Character page error:", error);
+    console.log("deu erro aki", error);
   }, [error]);
 
   return (
     <div className={styles.page}>
       <main id="main" className={styles.main}>
-        <h1 className={styles.title}>Algo deu errado</h1>
+        <h1 className={styles.title}>Erro ao carregar personagem</h1>
         <p className={styles.message}>
-          Não foi possível carregar os dados do personagem. Tente novamente.
+          Erro ao carregar a pagina. Tenta de novo.
         </p>
         <div className={styles.actions}>
           <button type="button" onClick={reset} className={styles.button}>

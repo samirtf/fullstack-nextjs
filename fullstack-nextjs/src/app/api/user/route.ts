@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { defaultUser } from "@/lib/data";
 
-/**
- * GET /api/user
- * Retorna o usuário (simulação para tela de perfil).
- */
 export async function GET() {
+  console.log("get user chamou");
   return NextResponse.json(defaultUser);
 }

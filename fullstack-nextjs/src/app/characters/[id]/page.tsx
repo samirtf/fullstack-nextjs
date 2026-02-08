@@ -3,24 +3,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { characters, getCharacterById } from "@/lib/data";
-import { CharacterDetailGuard } from "@/components/CharacterDetailGuard";
-import { CharacterLikeDislike } from "@/components/CharacterLikeDislike";
+import { CharacterDetailGuard } from "@/components/CharacterDetailGuard/CharacterDetailGuard";
+import { CharacterLikeDislike } from "@/components/CharacterLikeDislike/CharacterLikeDislike";
+import { LastVisitedTracker } from "@/components/LastVisitedTracker/LastVisitedTracker";
 import styles from "./page.module.css";
 
 type PageProps = {
   params: Promise<{ id: string }>;
 };
 
-/**
- * Geração estática dos ids conhecidos; demais sob demanda com revalidação (ISR).
- */
 export async function generateStaticParams() {
   return characters.map((character) => ({ id: character.id }));
 }
 
-/**
- * Revalida a página a cada 60 segundos (atualização incremental).
- */
 export const revalidate = 60;
 
 export async function generateMetadata({
@@ -29,7 +24,7 @@ export async function generateMetadata({
   const { id } = await params;
   const character = getCharacterById(id);
   if (!character) {
-    return { title: "Personagem não encontrado" };
+    return { title: "Personagem nao encontrado" };
   }
   return {
     title: `${character.name} | Personagens do Senhor dos Anéis`,
@@ -49,8 +44,9 @@ export default async function CharacterPage({ params }: PageProps) {
 
   return (
     <div className={styles.page}>
+      <LastVisitedTracker characterId={id} />
       <main id="main" className={styles.main}>
-        <nav className={styles.nav} aria-label="Navegação">
+        <nav className={styles.nav}>
           <Link href="/" className={styles.backLink}>
             ← Voltar à listagem
           </Link>
@@ -72,7 +68,7 @@ export default async function CharacterPage({ params }: PageProps) {
                   />
                 </div>
               ) : (
-                <div className={styles.imagePlaceholder} aria-hidden="true" />
+                <div className={styles.imagePlaceholder} />
               )}
               <div className={styles.headerText}>
                 <h1 className={styles.name}>{name}</h1>

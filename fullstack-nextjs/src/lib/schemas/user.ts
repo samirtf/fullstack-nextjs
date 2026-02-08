@@ -1,8 +1,5 @@
 import { z } from "zod";
 
-/**
- * Schema de validação para User (tela de perfil).
- */
 export const userSchema = z.object({
   id: z.string().min(1, "ID é obrigatório"),
   name: z.string().min(1, "Nome é obrigatório"),

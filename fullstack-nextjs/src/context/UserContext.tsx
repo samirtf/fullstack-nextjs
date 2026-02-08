@@ -27,8 +27,8 @@ function loadStoredUser(): User | null {
     ) {
       return parsed as User;
     }
-  } catch {
-    // ignore
+  } catch (e) {
+    console.log("excecao:", e);
   }
   return null;
 }
@@ -93,11 +93,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback((user: User) => {
+    console.log("login entrou", user.email);
     saveStoredUser(user);
     dispatch({ type: "LOGIN", payload: user });
+    console.log("login fim");
   }, []);
 
   const logout = useCallback(() => {
+    console.log("logout");
     saveStoredUser(null);
     dispatch({ type: "LOGOUT" });
   }, []);

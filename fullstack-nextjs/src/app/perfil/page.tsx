@@ -23,6 +23,7 @@ export default function PerfilPage() {
   }, [user, router]);
 
   const handleLogout = useCallback(() => {
+    console.log("saiu");
     logout();
     setName("");
     setEmail("");
@@ -33,11 +34,13 @@ export default function PerfilPage() {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      console.log("salvando...");
       setError(null);
       setSaveLoading(true);
       try {
         updateUser({ name, email, avatar: avatar || undefined });
         setIsEditing(false);
+        console.log("salvou");
       } finally {
         setSaveLoading(false);
       }
@@ -64,7 +67,7 @@ export default function PerfilPage() {
         <h1 className={styles.title}>Perfil</h1>
 
         {!isEditing ? (
-          <section className={styles.profile} aria-label="Dados do perfil">
+          <section className={styles.profile}>
             <div className={styles.avatarSection}>
               {user.avatar ? (
                 <Image
@@ -76,7 +79,7 @@ export default function PerfilPage() {
                   unoptimized
                 />
               ) : (
-                <div className={styles.avatarPlaceholder} aria-hidden="true">
+                <div className={styles.avatarPlaceholder}>
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -152,7 +155,6 @@ export default function PerfilPage() {
                 type="submit"
                 className={styles.primaryButton}
                 disabled={saveLoading}
-                aria-busy={saveLoading}
               >
                 {saveLoading ? "Salvando…" : "Salvar"}
               </button>

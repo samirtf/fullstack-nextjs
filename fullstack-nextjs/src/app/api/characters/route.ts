@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { characters } from "@/lib/data";
 
-/**
- * GET /api/characters
- * Retorna a lista de todos os personagens.
- */
 export async function GET() {
+  console.log("lista chars");
   return NextResponse.json(characters);
 }

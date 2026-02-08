@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-/**
- * Schema de validação para Personagem (listagem e página de detalhes).
- * Domínio: Personagens do Senhor dos Anéis.
- */
 export const characterSchema = z.object({
   id: z.string().min(1, "ID é obrigatório"),
   name: z.string().min(1, "Nome é obrigatório"),
