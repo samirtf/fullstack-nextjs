@@ -6,7 +6,7 @@ describe("characterSchema", () => {
       id: "frodo",
       name: "Frodo Bolseiro",
       race: "Hobbit",
-      excerpt: "Portador do Um Anel.",
+      shortDescription: "Portador do Um Anel.",
       content: "Descrição longa do personagem.",
     };
     const result = characterSchema.safeParse(valid);
@@ -23,7 +23,7 @@ describe("characterSchema", () => {
       id: "p1",
       name: "Personagem Teste",
       race: "Humano",
-      excerpt: "Resumo",
+      shortDescription: "Resumo",
       content: "Conteudo longo aqui.",
       image: "https://example.com/foto.png",
       createdAt: "2025-01-01T00:00:00.000Z",
@@ -36,7 +36,7 @@ describe("characterSchema", () => {
     const invalid = {
       name: "Frodo",
       race: "Hobbit",
-      excerpt: "Resumo",
+      shortDescription: "Resumo",
       content: "Conteúdo",
     };
     const result = characterSchema.safeParse(invalid);
@@ -48,7 +48,7 @@ describe("characterSchema", () => {
       id: "",
       name: "Frodo",
       race: "Hobbit",
-      excerpt: "Resumo",
+      shortDescription: "Resumo",
       content: "Conteúdo",
     };
     const result = characterSchema.safeParse(invalid);
@@ -60,7 +60,7 @@ describe("characterSchema", () => {
       id: "elrond",
       name: "Elrond",
       race: "Meio-elfo",
-      excerpt: "Senhor de Valfenda.",
+      shortDescription: "Senhor de Valfenda.",
       content: "Descrição.",
       restricted: true,
     };
@@ -76,7 +76,7 @@ describe("characterSchema", () => {
       id: "frodo",
       name: "Frodo",
       race: "Hobbit",
-      excerpt: "Resumo",
+      shortDescription: "Resumo",
       content: "Conteúdo",
     };
     const result = characterSchema.safeParse(valid);
@@ -91,7 +91,7 @@ describe("characterSchema", () => {
       id: "frodo",
       name: "Frodo",
       race: "Hobbit",
-      excerpt: "Resumo",
+      shortDescription: "Resumo",
       content: "Conteúdo",
       image: "not-a-url",
     };
@@ -107,14 +107,14 @@ describe("characterArraySchema", () => {
         id: "a",
         name: "Um",
         race: "Hobbit",
-        excerpt: "Resumo A",
+        shortDescription: "Resumo A",
         content: "Conteudo A",
       },
       {
         id: "b",
         name: "Dois",
         race: "Mago",
-        excerpt: "Resumo B",
+        shortDescription: "Resumo B",
         content: "Conteudo B",
       },
     ];
@@ -131,14 +131,14 @@ describe("characterArraySchema", () => {
         id: "a",
         name: "Um",
         race: "Hobbit",
-        excerpt: "A",
+        shortDescription: "A",
         content: "B",
       },
       {
         id: "",
         name: "Dois",
         race: "Mago",
-        excerpt: "C",
+        shortDescription: "C",
         content: "D",
       },
     ];

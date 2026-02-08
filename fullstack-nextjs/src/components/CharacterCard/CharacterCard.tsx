@@ -9,7 +9,7 @@ type CharacterCardProps = {
 };
 
 export function CharacterCard({ character }: CharacterCardProps) {
-  const { id, name, race, excerpt, image } = character;
+  const { id, name, race, shortDescription, image } = character;
   console.log("card", name);
 
   return (
@@ -32,7 +32,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
         <div className={styles.content}>
           <h2 className={styles.name}>{name}</h2>
           <p className={styles.race}>{race}</p>
-          <p className={styles.excerpt}>{excerpt}</p>
+          <p className={styles.excerpt}>{shortDescription}</p>
         </div>
       </Link>
       <div className={styles.actions}>

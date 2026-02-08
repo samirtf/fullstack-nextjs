@@ -1,21 +1,21 @@
-# Personagens do Senhor dos Anéis
+# Lista dos personagens do Senhor dos Anéis
 
-Side project para estudar Next.js App Router com um tema que gosto. Exibe os nove membros da **Sociedade do Anel**: listagem, detalhes por personagem e perfil com login mockado. Escolhi o tema Senhor dos Anéis por ser um universo com personagens bem definidos para modelagem.
+Projeto React com Next.js. Exibe os nove membros da **Sociedade do Anel**: listagem, detalhes por personagem e perfil com login mockado. Escolhi o tema Senhor dos Anéis porque sou fã.
 
 ## Funcionalidades
 
 - **Início** – Listagem em grid dos personagens (Hobbits, Homens, Mago, Elfo e Anão) com cards clicáveis.
-- **Detalhes** – Página por personagem com imagem, raça, resumo e texto completo; geração estática com revalidação (ISR).
-- **Perfil** – Login com dados mock, exibição e edição de nome, e-mail e avatar.
-- Acessibilidade – Skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de loading/erro.
-- **Tema** – Suporte a tema claro/escuro conforme preferência do sistema.
+- **Detalhes** – Página por personagem com imagem, raça, resumo e descrição; geração estática com revalidação (ISR).
+- **Perfil** – Login com dados mockados no json, exibição e edição de nome, e-mail e avatar.
+- Acessibilidade – Implementação básica: skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de carregamento/erro.
+- **Tema** – Suporte a tema claro/escuro.
 
 ## Decisões de Arquitetura
 
 - Optei por Context API em vez de Redux para manter o projeto simples.
 - Os dados são mockados para evitar dependência de backend nesta etapa.
 - sessionStorage foi escolhido em vez de localStorage para manter a sessão apenas durante a navegação.
-- O projeto prioriza simplicidade em vez de escalabilidade neste momento.
+- Priorizei simplicidade em vez de escalabilidade por conta do tempo. Estou com muitas demandas no trabalho.
 - Context separado pra preferências pra nao misturar com user; depois daria pra juntar.
 
 ## Evolução
@@ -25,7 +25,7 @@ Side project para estudar Next.js App Router com um tema que gosto. Exibe os nov
 **v3** – Login mockado, preferências por usuário  
 **v4** – Último personagem visitado (sessionStorage)
 
-**Próximos passos:** Backend real, persistência em banco, filtros por personagem.
+**Próximos passos:** Backend real, persistência em banco, filtros por personagem. Adicionaria essas funcionalidades, mas já é domingo e não vai dar tempo.
 
 ## Pré-requisitos
 
@@ -40,23 +40,21 @@ npm install
 
 ## Scripts
 
-| Comando                | Descrição                                |
-| ---------------------- | ---------------------------------------- |
-| `npm run dev`          | Servidor de desenvolvimento (porta 3000) |
-| `npm run build`        | Build de produção                        |
-| `npm run start`        | Servidor de produção (após `build`)      |
-| `npm run lint`         | Executa o ESLint                         |
-| `npm run lint:fix`     | Corrige automaticamente o ESLint         |
-| `npm run format`       | Formata o código com Prettier            |
-| `npm run format:check` | Verifica formatação com Prettier         |
-| `npm run test`         | Executa os testes (Jest)                 |
-| `npm run test:watch`   | Testes em modo watch                     |
+`npm run dev`          - Rodar desenvolvimento (porta 3000)
+`npm run build`        - Buildar
+`npm run start`        - Rodar após buildar
+`npm run lint`         - Roda o ESLint
+`npm run lint:fix`     - Roda o ESLint e corrige automaticamente
+`npm run format`       - Formata o código com Prettier
+`npm run format:check` - Checa a formatação com Prettier
+`npm run test`         - Roda os testes com Jest
+`npm run test:watch`   - Testes em modo watch
 
 ## Execução
 
-1. Instale as dependências: `npm install`
-2. Inicie o servidor: `npm run dev`
-3. Acesse [http://localhost:3000](http://localhost:3000)
+1. Instalar as dependências: `npm install`
+2. Rodar o servidor: `npm run dev`
+3. Acesse no navegador [http://localhost:3000](http://localhost:3000)
 
 Para produção:
 
@@ -67,26 +65,34 @@ npm run start
 
 ## Estrutura do projeto
 
-```
-src/
-├── app/                    # App Router (rotas e páginas)
-│   ├── api/                # Route Handlers (API interna)
-│   │   ├── characters/     # GET lista e GET por id
-│   │   └── user/           # GET usuário padrão
-│   ├── characters/[id]/    # Página de detalhes + loading + error + not-found
-│   ├── perfil/             # Página de perfil (client)
-│   ├── layout.tsx          # Layout raiz e navegação
-│   ├── page.tsx            # Página inicial (listagem)
-│   ├── providers.tsx       # UserProvider
-│   └── globals.css         # Estilos globais e tema
-├── components/             # Componentes reutilizáveis
-│   └── CharacterCard/
-├── context/                # React Context (UserContext)
-├── lib/                    # Utilitários e dados
-│   ├── data/               # Personagens e usuário (mock)
-│   └── schemas/            # Schemas Zod (Character, User)
-└── __tests__/              # Testes unitários (Jest)
-```
+O projeto está organizado dentro da pasta `src`. A separação é simples e segue o fluxo principal da aplicação.
+
+Resumo do que tem em cada parte:
+
+* **app/**
+  Onde ficam as páginas e rotas do Next.js.
+
+  * `api/`: endpoints internos usados pelo próprio app
+  * `characters/[id]`: tela de detalhes do personagem
+  * `perfil/`: página do usuário
+  * `layout.tsx`: layout base com navegação
+  * `providers.tsx`: contexts globais
+  * `globals.css`: estilos gerais
+
+* **components/**
+  Componentes de interface reutilizáveis (ex: cards de personagem).
+
+* **context/**
+  Contextos React para estado global, como informações do usuário.
+
+* **lib/**
+  Código de apoio: dados mockados, validações com Zod e utilidades.
+
+* ****tests**/**
+  Testes unitários do projeto.
+
+A estrutura é intencionalmente simples, já que o objetivo do projeto é demonstrar os conceitos principais sem adicionar complexidade desnecessária.
+
 
 ## API interna (Route Handlers)
 
@@ -99,10 +105,9 @@ Os dados vêm de `src/lib/data` (sem banco de dados).
 
 ## Contas de teste
 
-| Usuário | E-mail | Senha |
-| ------- | ------ | ----- |
-| samir | samir.admin@demo.app | Anel123! |
-| frodo | frodo@condado.terra | Anel123! |
+Usuário, E-mail, Senha
+samir, samir.admin@demo.app, 123456
+frodo, frodo@condado.terra, 1ate6
 
 ## Testes
 

@@ -6,7 +6,7 @@ const rawCharacters: Character[] = [
     name: "Frodo Bolseiro",
     race: "Hobbit",
     restricted: false,
-    excerpt: "O que carrega o anel ate Mordor. Pra mim o personagem mais transformado pela jornada.",
+    shortDescription: "O que carrega o anel ate Mordor. Pra mim o personagem mais transformado pela jornada.",
     content:
       "Frodo e o hobbit que herdou o anel do Bilbo e teve que ir ate as Fendas da Perdição. A responsabilidade de carregar aquilo foi gigante — muita gente discute se ele ou o Sam e o verdadeiro heroi. Ele acaba partindo pra Valinor no fim, nao aguenta mais a Terra-media depois de tudo.",
     image:
@@ -18,7 +18,7 @@ const rawCharacters: Character[] = [
     name: 'Samwise "Sam" Gamgi',
     race: "Hobbit",
     restricted: false,
-    excerpt: "Jardineiro do Frodo. Pra muita gente o verdadeiro heroi da historia.",
+    shortDescription: "Jardineiro do Frodo. Pra muita gente o verdadeiro heroi da historia.",
     content:
       "Sam e o amigo que todo mundo queria. Lealdade tipo anjo da guarda. Ele que segura as pontas quando o Frodo nao aguenta, carrega o anel quando precisa, e no fim volta pro Condado e casa com a Rosie. Tem uns que preferem o Frodo mas a força do Sam e inabalavel.",
     image:
@@ -30,7 +30,7 @@ const rawCharacters: Character[] = [
     name: 'Meriadoc "Merry" Brandebuque',
     race: "Hobbit",
     restricted: false,
-    excerpt: "Hobbit, amigo do Pippin. Fica do lado do Rei Theoden em Rohan.",
+    shortDescription: "Hobbit, amigo do Pippin. Fica do lado do Rei Theoden em Rohan.",
     content:
       "Merry faz dupla com o Pippin. Os dois sao mais jovens e meio atrapalhados no comeco mas amadurecem. Ele ajuda a Eowyn a derrubar o Rei Bruxo — a profecia dizia que nao seria morto por mão de homem, e ela e mulher. Coragem de sobra.",
     image:
@@ -42,7 +42,7 @@ const rawCharacters: Character[] = [
     name: 'Peregrin "Pippin" Tûk',
     race: "Hobbit",
     restricted: false,
-    excerpt: "O mais novo dos quatro hobbits. Meio atrapalhado mas cumpre o papel.",
+    shortDescription: "O mais novo dos quatro hobbits. Meio atrapalhado mas cumpre o papel.",
     content:
       "Pippin comete uns erros (olha a palantir) mas no fim ajuda demais. Serviu ao Denethor em Gondor e viu a loucura do regente. Jovem e irreverente no inicio, amadurece na guerra. Dupla classica com o Merry.",
     image:
@@ -54,7 +54,7 @@ const rawCharacters: Character[] = [
     name: "Gandalf, o Cinzento",
     race: "Mago",
     restricted: false,
-    excerpt: "O mago. Lidera a galera. Cai na ponte de Khazad-dum e volta branco.",
+    shortDescription: "O mago. Lidera a galera. Cai na ponte de Khazad-dum e volta branco.",
     content:
       "Gandalf pra mim e um dos mais fodas. Istari, veio dos Valar pra combater o Sauron. Morre lutando com o Balrog em Moria e volta como Gandalf o Branco, mais forte. Guia todo mundo na guerra. O Ian McKellen mandou bem demais no filme.",
     image:
@@ -66,7 +66,7 @@ const rawCharacters: Character[] = [
     name: "Aragorn",
     race: "Humano",
     restricted: false,
-    excerpt: "Passolongo. Herdeiro de Isildur, vira rei de Gondor no final.",
+    shortDescription: "Passolongo. Herdeiro de Isildur, vira rei de Gondor no final.",
     content:
       "Aragorn andava disfarçado de ranger antes de assumir. Guia os hobbits, lidera os exercitos. No retorno do rei ele e coroado Elessar e casa com a Arwen. Viggo Mortensen ficou lendario no papel.",
     image:
@@ -78,7 +78,7 @@ const rawCharacters: Character[] = [
     name: "Boromir",
     race: "Humano",
     restricted: false,
-    excerpt: "Guerreiro de Gondor. Quer o anel pra defender a cidade, cai em tentacao.",
+    shortDescription: "Guerreiro de Gondor. Quer o anel pra defender a cidade, cai em tentacao.",
     content:
       "Boromir e filho do Denethor. Quer pegar o anel e usar em Gondor — a tentacao pega ele. Se arrepende e morre defendendo o Merry e o Pippin dos orcs. Cena triste. O irmao Faramir e diferente, resiste quando encontra o Frodo.",
     image:
@@ -90,7 +90,7 @@ const rawCharacters: Character[] = [
     name: "Legolas",
     race: "Elfo",
     restricted: false,
-    excerpt: "Elfo da Floresta Negra. Pontaria absurda, amigo do Gimli.",
+    shortDescription: "Elfo da Floresta Negra. Pontaria absurda, amigo do Gimli.",
     content:
       "Legolas e príncipe elfico, filho do Thranduil. Mata orc pra caramba, sentidos agucados. No comeco o Gimli nao confiava nos elfos mas viram melhores amigos — no fim os dois vao pro Oeste juntos. Orlando Bloom estourou na epoca.",
     image:
@@ -102,7 +102,7 @@ const rawCharacters: Character[] = [
     name: "Gimli, filho de Glóin",
     race: "Anão",
     restricted: false,
-    excerpt: "Anao, desconfiava de elfo. Vira amigao do Legolas.",
+    shortDescription: "Anao, desconfiava de elfo. Vira amigao do Legolas.",
     content:
       "Gimli comeca desconfiando dos elfos (rivalidade classica) mas no meio da jornada e o Legolas viram irmaos. Ele pede um fio de cabelo da Galadriel. Unico anao que vai pro Oeste no barco no final.",
     image:
@@ -113,7 +113,7 @@ const rawCharacters: Character[] = [
     id: "elrond",
     name: "Elrond",
     race: "Meio-elfo",
-    excerpt: "Senhor de Valfenda. Foi la que decidiram destruir o anel.",
+    shortDescription: "Senhor de Valfenda. Foi la que decidiram destruir o anel.",
     content:
       "Elrond recebe a sociedade em Valfenda (Imladris). O conselho dele e que define a missao. Cura o Frodo da lâmina de Morgul. Meio-elfo, sabio pra caramba. No filme o Hugo Weaving faz o papel.",
     image:
@@ -125,7 +125,7 @@ const rawCharacters: Character[] = [
     id: "galadriel",
     name: "Galadriel",
     race: "Elfa",
-    excerpt: "Senhora de Lorien. Poderosa, da os presentes pro grupo.",
+    shortDescription: "Senhora de Lorien. Poderosa, da os presentes pro grupo.",
     content:
       "Galadriel reina em Lorien. Quando o Frodo oferece o anel ela recusa — cena tensa. Ela da os presentes que salvam a missao (a luz, etc). Uma das mais poderosas da Terra-media. A Cate Blanchett no filme e perfeita.",
     image:
@@ -137,7 +137,7 @@ const rawCharacters: Character[] = [
     id: "gollum",
     name: "Gollum (Sméagol)",
     race: "Criatura (ex-hobbit)",
-    excerpt: "Ex-hobbit corrompido pelo anel. Guia e trai o Frodo e o Sam.",
+    shortDescription: "Ex-hobbit corrompido pelo anel. Guia e trai o Frodo e o Sam.",
     content:
       "Gollum era o Sméagol, hobbit dos Campos de Lis. Achou o anel e foi corrompido. Depois que o Bilbo leva ele fica obcecado. Guia o Frodo e o Sam ate Mordor mas no final a obsessao vence e ele acaba caindo nas Fendas com o anel. Tragico.",
     image:
@@ -149,7 +149,7 @@ const rawCharacters: Character[] = [
     id: "faramir",
     name: "Faramir",
     race: "Humano",
-    excerpt: "Irmao do Boromir. Capitão em Gondor, resiste ao anel.",
+    shortDescription: "Irmao do Boromir. Capitão em Gondor, resiste ao anel.",
     content:
       "Faramir e o outro filho do Denethor. Diferente do Boromir — quando encontra o Frodo e o Sam em Ithilien nao leva o anel. Reconhece a missao e deixa eles irem. No fim casa com a Eowyn. Personagem subestimado.",
     image:
@@ -161,7 +161,7 @@ const rawCharacters: Character[] = [
     id: "eowyn",
     name: "Éowyn",
     race: "Humana",
-    excerpt: "Sobrinha do Theoden. Mata o Rei Bruxo com ajuda do Merry.",
+    shortDescription: "Sobrinha do Theoden. Mata o Rei Bruxo com ajuda do Merry.",
     content:
       "Eowyn queria lutar em vez de ficar em casa. Se disfarça e vai pros Campos de Pelennor. A profecia dizia que o Rei Bruxo nao morreria por mão de homem — ela e mulher, e com o Merry derruba ele. Cena epica. Depois casa com o Faramir.",
     image:

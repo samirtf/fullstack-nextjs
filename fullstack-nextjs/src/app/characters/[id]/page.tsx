@@ -28,7 +28,7 @@ export async function generateMetadata({
   }
   return {
     title: `${character.name} | Personagens do Senhor dos Anéis`,
-    description: character.excerpt,
+    description: character.shortDescription,
   };
 }
 
@@ -40,7 +40,7 @@ export default async function CharacterPage({ params }: PageProps) {
     notFound();
   }
 
-  const { name, race, excerpt, content, image } = character;
+  const { name, race, shortDescription, content, image } = character;
 
   return (
     <div className={styles.page}>
@@ -73,7 +73,7 @@ export default async function CharacterPage({ params }: PageProps) {
               <div className={styles.headerText}>
                 <h1 className={styles.name}>{name}</h1>
                 <p className={styles.race}>{race}</p>
-                <p className={styles.excerpt}>{excerpt}</p>
+                <p className={styles.excerpt}>{shortDescription}</p>
               </div>
             </header>
 
