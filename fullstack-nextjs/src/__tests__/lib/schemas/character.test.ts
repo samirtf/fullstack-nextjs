@@ -86,7 +86,7 @@ describe("characterSchema", () => {
     }
   });
 
-  it("rejeita personagem com image inválida (não URL)", () => {
+  it("rejeita personagem com image invalida (nao URL)", () => {
     const invalid = {
       id: "frodo",
       name: "Frodo",
