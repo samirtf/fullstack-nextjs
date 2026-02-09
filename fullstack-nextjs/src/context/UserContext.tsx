@@ -97,11 +97,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     logger.log("login entrou", user.email);
     saveStoredUser(user);
     dispatch({ type: "LOGIN", payload: user });
-    logger.log("login fim");
   }, []);
 
   const logout = useCallback(() => {
-    logger.log("logout");
     saveStoredUser(null);
     dispatch({ type: "LOGOUT" });
   }, []);

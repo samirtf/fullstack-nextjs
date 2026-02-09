@@ -10,7 +10,6 @@ export default async function handler(
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  logger.log("login api");
   try {
     const { email, password } = req.body as {
       email?: string;
@@ -33,11 +32,9 @@ export default async function handler(
       });
     }
 
-    // Exclude password from API response
-    const { password: _unused, ...user } = found;
-    void _unused;
+    const { id, name, email, avatar } = found;
     logger.log("logou", found.email);
-    return res.status(200).json(user);
+    return res.status(200).json({ id, name, email, avatar });
   } catch (e) {
     logger.error("excecao no login api:", e);
     return res.status(400).json({

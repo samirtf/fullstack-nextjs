@@ -31,7 +31,6 @@ function LoginForm() {
           setError(data.error ?? "E-mail ou senha inválidos");
           return;
         }
-        logger.log("user logged", data.email);
         login(data);
         router.push(from);
       } catch (e) {

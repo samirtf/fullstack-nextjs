@@ -13,7 +13,6 @@ import {
   type Preference,
   preferencesReducer,
 } from "@/lib/reducers/preferences";
-import { logger } from "@/lib/logger";
 
 export type { Preference } from "@/lib/reducers/preferences";
 
@@ -44,7 +43,7 @@ function savePreferences(userId: string, prefs: Record<string, Preference>) {
   try {
     localStorage.setItem(getStorageKey(userId), JSON.stringify(prefs));
   } catch {
-    // Ignore storage errors
+    // ignora erro de storage
   }
 }
 
@@ -93,7 +92,6 @@ export function CharacterPreferencesProvider({
 
   const setPreference = useCallback(
     (characterSlug: string, value: Preference | null) => {
-      logger.log("pref", characterSlug, value);
       dispatch({ type: "SET_PREFERENCE", payload: { characterSlug, value } });
     },
     []

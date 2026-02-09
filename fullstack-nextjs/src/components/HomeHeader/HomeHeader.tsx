@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { getLastCharacterSlug } from "@/lib/storage/lastCharacter";
-import { logger } from "@/lib/logger";
 import type { Character } from "@/lib/schemas";
 import styles from "./HomeHeader.module.css";
 
@@ -19,8 +18,6 @@ export function HomeHeader({ characters }: HomeHeaderProps) {
   useEffect(() => {
     setLastSlug(getLastCharacterSlug());
   }, []);
-
-  logger.log("header", lastSlug || "nada");
 
   const visibleCount = useMemo(
     () => characters.filter((c) => !c.restricted || user).length,

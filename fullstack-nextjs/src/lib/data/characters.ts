@@ -1,5 +1,4 @@
 import { characterArraySchema, type Character } from "@/lib/schemas";
-import { logger } from "@/lib/logger";
 
 const rawCharacters: Character[] = [
   {
@@ -176,6 +175,5 @@ export const characters: Character[] =
   characterArraySchema.parse(rawCharacters);
 
 export function getCharacterBySlug(slug: string): Character | undefined {
-  logger.log("get char by slug", slug);
   return characters.find((character) => character.slug === slug);
 }

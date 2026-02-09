@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getCharacterBySlug } from "@/lib/data";
-import { logger } from "@/lib/logger";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,7 +10,6 @@ export default async function handler(
   }
 
   const slug = req.query.slug as string;
-  logger.log("busca char", slug);
   const character = getCharacterBySlug(slug);
 
   if (!character) {

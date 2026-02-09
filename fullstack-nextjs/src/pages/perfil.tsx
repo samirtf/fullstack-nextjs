@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUser } from "@/context/UserContext";
-import { logger } from "@/lib/logger";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./perfil.module.css";
 
@@ -24,7 +23,6 @@ export default function PerfilPage() {
   }, [user, router]);
 
   const handleLogout = useCallback(() => {
-    logger.log("saiu");
     logout();
     setName("");
     setEmail("");
@@ -37,11 +35,9 @@ export default function PerfilPage() {
       e.preventDefault();
       setError(null);
       setSaveLoading(true);
-      logger.log("salvando...");
       try {
         updateUser({ name, email, avatar: avatar || undefined });
         setIsEditing(false);
-        logger.log("salvou");
       } finally {
         setSaveLoading(false);
       }
