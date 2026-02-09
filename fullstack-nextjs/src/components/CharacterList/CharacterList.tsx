@@ -14,11 +14,11 @@ type CharacterListProps = {
 
 function sortByPreference(
   chars: Character[],
-  getPreference: (id: string) => "like" | "dislike" | null
+  getPreference: (slug: string) => "like" | "dislike" | null
 ): Character[] {
   return [...chars].sort((a, b) => {
-    const pa = getPreference(a.id);
-    const pb = getPreference(b.id);
+    const pa = getPreference(a.slug);
+    const pb = getPreference(b.slug);
     const order = (p: "like" | "dislike" | null) => (p === "like" ? 1 : 0);
     return order(pb) - order(pa);
   });
@@ -43,7 +43,7 @@ export function CharacterList({ characters }: CharacterListProps) {
         </p>
       ) : (
         visibleCharacters.map((character) => (
-          <CharacterCard key={character.id} character={character} />
+          <CharacterCard key={character.slug} character={character} />
         ))
       )}
     </section>

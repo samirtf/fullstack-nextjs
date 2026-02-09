@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useUser } from "@/context/UserContext";
 import { logger } from "@/lib/logger";
 import { useCallback, useEffect, useState } from "react";
-import styles from "./page.module.css";
+import styles from "./perfil.module.css";
 
 export default function PerfilPage() {
   const { user, logout, updateUser } = useUser();
@@ -15,7 +15,7 @@ export default function PerfilPage() {
   const [avatar, setAvatar] = useState(user?.avatar ?? "");
   const [isEditing, setIsEditing] = useState(false);
   const [saveLoading, setSaveLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user) {

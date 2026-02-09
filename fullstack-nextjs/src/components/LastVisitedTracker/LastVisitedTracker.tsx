@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect } from "react";
-import { setLastCharacterId } from "@/lib/storage/lastCharacter";
+import { setLastCharacterSlug } from "@/lib/storage/lastCharacter";
 import { logger } from "@/lib/logger";
 
 type LastVisitedTrackerProps = {
-  characterId: string;
+  characterSlug: string;
 };
 
-export function LastVisitedTracker({ characterId }: LastVisitedTrackerProps) {
+export function LastVisitedTracker({ characterSlug }: LastVisitedTrackerProps) {
   useEffect(() => {
-    logger.log("ultimo visitado", characterId);
-    setLastCharacterId(characterId);
-  }, [characterId]);
+    logger.log("ultimo visitado", characterSlug);
+    setLastCharacterSlug(characterSlug);
+  }, [characterSlug]);
 
   return null;
 }

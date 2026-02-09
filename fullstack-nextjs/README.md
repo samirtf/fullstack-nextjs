@@ -5,13 +5,14 @@ Projeto React com Next.js. Exibe os nove membros da **Sociedade do Anel**: lista
 ## Funcionalidades
 
 - **Início** – Listagem em grid dos personagens (Hobbits, Homens, Mago, Elfo e Anão) com cards clicáveis.
-- **Detalhes** – Página por personagem com imagem, raça, resumo e descrição; geração estática com revalidação (ISR).
+- **Detalhes** – Página por personagem em `/items/[slug]` com imagem, raça, resumo e descrição; geração estática com revalidação (ISR).
 - **Perfil** – Login com dados mockados no json, exibição e edição de nome, e-mail e avatar.
 - Acessibilidade – Implementação básica: skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de carregamento/erro.
 - **Tema** – Tema claro.
 
 ## Decisões de Arquitetura
 
+- **Estratégia ISR na página de detalhe**: Usei Incremental Static Regeneration (`revalidate: 60`) em vez de SSR porque os dados mudam pouco, oferece melhor performance e menor custo de servidor. Se os dados mudassem com frequência ou precisassem estar sempre atualizados, SSR seria mais indicado.
 - Optei por Context API em vez de Redux para manter o projeto simples.
 - Os dados são mockados para evitar dependência de backend nesta etapa.
 - sessionStorage foi escolhido em vez de localStorage para manter a sessão apenas durante a navegação.
@@ -65,19 +66,19 @@ npm run start
 
 ## Estrutura do projeto
 
-O projeto está organizado dentro da pasta `src`. A separação é simples e segue o fluxo principal da aplicação.
+O projeto está organizado dentro da pasta `src`. A separação é simples e segue o fluxo principal da aplicação. Utiliza **Pages Router** do Next.js.
 
 Resumo do que tem em cada parte:
 
-* **app/**
-  Onde ficam as páginas e rotas do Next.js.
+* **pages/**
+  Onde ficam as páginas e rotas do Next.js (Pages Router).
 
-  * `api/`: endpoints internos usados pelo próprio app
-  * `characters/[id]`: tela de detalhes do personagem
-  * `perfil/`: página do usuário
-  * `layout.tsx`: layout base com navegação
-  * `providers.tsx`: contexts globais
-  * `globals.css`: estilos gerais
+  * `index.tsx`: página inicial com listagem (SSG via `getStaticProps`)
+  * `items/[slug].tsx`: tela de detalhes do item/personagem (ISR via `getStaticPaths` + `getStaticProps` + `revalidate`)
+  * `login.tsx`: página de login
+  * `perfil.tsx`: página do usuário
+  * `api/`: endpoints da API (characters, user, auth)
+  * `_app.tsx`: layout base com navegação e providers
 
 * **components/**
   Componentes de interface reutilizáveis (ex: cards de personagem).
@@ -94,10 +95,10 @@ Resumo do que tem em cada parte:
 A estrutura é intencionalmente simples, já que o objetivo do projeto é demonstrar os conceitos principais sem adicionar complexidade desnecessária.
 
 
-## API interna (Route Handlers)
+## API interna (Pages Router API Routes)
 
 - `GET /api/characters` – Lista todos os personagens.
-- `GET /api/characters/[id]` – Retorna um personagem por ID (404 se não existir).
+- `GET /api/characters/[slug]` – Retorna um personagem por slug (404 se não existir).
 - `GET /api/user` – Retorna o usuário padrão usado no perfil.
 - `POST /api/auth/login` – Valida e-mail e senha contra usuários mock.
 
@@ -126,10 +127,10 @@ Skip link, foco visível e ARIA estão no código. Estados vazios, loading e err
 
 Projeto desenvolvido como exercício prático para consolidar conceitos de:
 
-- Next.js App Router
-- SSG/ISR
+- Next.js Pages Router
+- SSG (`getStaticProps` na home) e ISR (`getStaticPaths` + `getStaticProps` + `revalidate` na página de detalhe)
 - Context API
-- Route Handlers
+- API Routes (Pages Router)
 - Validação com Zod
 
 Tempo estimado de desenvolvimento: 10–15 horas. Projeto simples focado em aprendizado e prática.

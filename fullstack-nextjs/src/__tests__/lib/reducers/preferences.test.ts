@@ -9,7 +9,7 @@ describe("preferencesReducer", () => {
   it("adiciona preferencia like", () => {
     const state = preferencesReducer(initialState, {
       type: "SET_PREFERENCE",
-      payload: { characterId: "frodo", value: "like" },
+      payload: { characterSlug: "frodo", value: "like" },
     });
     expect(state).toEqual({ frodo: "like" });
   });
@@ -17,7 +17,7 @@ describe("preferencesReducer", () => {
   it("adiciona preferencia dislike", () => {
     const state = preferencesReducer(initialState, {
       type: "SET_PREFERENCE",
-      payload: { characterId: "sam", value: "dislike" },
+      payload: { characterSlug: "sam", value: "dislike" },
     });
     expect(state).toEqual({ sam: "dislike" });
   });
@@ -26,7 +26,7 @@ describe("preferencesReducer", () => {
     const withPref = { frodo: "like" as const };
     const state = preferencesReducer(withPref, {
       type: "SET_PREFERENCE",
-      payload: { characterId: "frodo", value: null },
+      payload: { characterSlug: "frodo", value: null },
     });
     expect(state).toEqual({});
   });
@@ -35,7 +35,7 @@ describe("preferencesReducer", () => {
     const withPref = { frodo: "like" as const };
     const state = preferencesReducer(withPref, {
       type: "SET_PREFERENCE",
-      payload: { characterId: "frodo", value: "dislike" },
+      payload: { characterSlug: "frodo", value: "dislike" },
     });
     expect(state).toEqual({ frodo: "dislike" });
   });

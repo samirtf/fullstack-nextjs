@@ -3,7 +3,7 @@ import { logger } from "@/lib/logger";
 
 const rawCharacters: Character[] = [
   {
-    id: "frodo",
+    slug: "frodo",
     name: "Frodo Bolseiro",
     race: "Hobbit",
     restricted: false,
@@ -15,7 +15,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-01-15T10:00:00.000Z",
   },
   {
-    id: "sam",
+    slug: "sam",
     name: 'Samwise "Sam" Gamgi',
     race: "Hobbit",
     restricted: false,
@@ -27,7 +27,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-02-01T08:00:00.000Z",
   },
   {
-    id: "merry",
+    slug: "merry",
     name: 'Meriadoc "Merry" Brandebuque',
     race: "Hobbit",
     restricted: false,
@@ -39,7 +39,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-02-02T10:00:00.000Z",
   },
   {
-    id: "pippin",
+    slug: "pippin",
     name: 'Peregrin "Pippin" Tûk',
     race: "Hobbit",
     restricted: false,
@@ -51,7 +51,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-02-02T10:00:00.000Z",
   },
   {
-    id: "gandalf",
+    slug: "gandalf",
     name: "Gandalf, o Cinzento",
     race: "Mago",
     restricted: false,
@@ -63,7 +63,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-01-20T14:30:00.000Z",
   },
   {
-    id: "aragorn",
+    slug: "aragorn",
     name: "Aragorn",
     race: "Humano",
     restricted: false,
@@ -75,7 +75,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-01-25T09:00:00.000Z",
   },
   {
-    id: "boromir",
+    slug: "boromir",
     name: "Boromir",
     race: "Humano",
     restricted: false,
@@ -87,7 +87,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-02-03T09:00:00.000Z",
   },
   {
-    id: "legolas",
+    slug: "legolas",
     name: "Legolas",
     race: "Elfo",
     restricted: false,
@@ -99,7 +99,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-01-28T11:00:00.000Z",
   },
   {
-    id: "gimli",
+    slug: "gimli",
     name: "Gimli, filho de Glóin",
     race: "Anão",
     restricted: false,
@@ -111,7 +111,7 @@ const rawCharacters: Character[] = [
     createdAt: "2025-02-03T11:00:00.000Z",
   },
   {
-    id: "elrond",
+    slug: "elrond",
     name: "Elrond",
     race: "Meio-elfo",
     shortDescription: "Senhor de Valfenda. Foi la que decidiram destruir o anel.",
@@ -123,7 +123,7 @@ const rawCharacters: Character[] = [
     restricted: true,
   },
   {
-    id: "galadriel",
+    slug: "galadriel",
     name: "Galadriel",
     race: "Elfa",
     shortDescription: "Senhora de Lorien. Poderosa, da os presentes pro grupo.",
@@ -135,7 +135,7 @@ const rawCharacters: Character[] = [
     restricted: true,
   },
   {
-    id: "gollum",
+    slug: "gollum",
     name: "Gollum (Sméagol)",
     race: "Criatura (ex-hobbit)",
     shortDescription: "Ex-hobbit corrompido pelo anel. Guia e trai o Frodo e o Sam.",
@@ -147,7 +147,7 @@ const rawCharacters: Character[] = [
     restricted: true,
   },
   {
-    id: "faramir",
+    slug: "faramir",
     name: "Faramir",
     race: "Humano",
     shortDescription: "Irmao do Boromir. Capitão em Gondor, resiste ao anel.",
@@ -159,7 +159,7 @@ const rawCharacters: Character[] = [
     restricted: true,
   },
   {
-    id: "eowyn",
+    slug: "eowyn",
     name: "Éowyn",
     race: "Humana",
     shortDescription: "Sobrinha do Theoden. Mata o Rei Bruxo com ajuda do Merry.",
@@ -175,7 +175,7 @@ const rawCharacters: Character[] = [
 export const characters: Character[] =
   characterArraySchema.parse(rawCharacters);
 
-export function getCharacterById(id: string): Character | undefined {
-  logger.log("get char by id", id);
-  return characters.find((character) => character.id === id);
+export function getCharacterBySlug(slug: string): Character | undefined {
+  logger.log("get char by slug", slug);
+  return characters.find((character) => character.slug === slug);
 }

@@ -27,7 +27,7 @@ export function CharacterDetailGuard({
           <p className={styles.loginMessage}>
             Faça login para ver este personagem.
           </p>
-          <Link href={`/login?from=/characters/${character.id}`} className={styles.loginLink}>
+          <Link href={`/login?from=/items/${character.slug}`} className={styles.loginLink}>
             Ir para o login
           </Link>
         </div>

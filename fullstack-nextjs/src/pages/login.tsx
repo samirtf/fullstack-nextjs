@@ -1,15 +1,15 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { useUser } from "@/context/UserContext";
 import { logger } from "@/lib/logger";
-import styles from "./page.module.css";
+import styles from "./login.module.css";
 
 function LoginForm() {
   const { user, login } = useUser();
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const from = (router.query.from as string) ?? "/perfil";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +33,6 @@ function LoginForm() {
         }
         logger.log("user logged", data.email);
         login(data);
-        const from = searchParams.get("from") ?? "/perfil";
         router.push(from);
       } catch (e) {
         logger.error("excecao ao conectar no login:", e);
@@ -42,7 +41,7 @@ function LoginForm() {
         setIsLoading(false);
       }
     },
-    [email, password, login, router, searchParams]
+    [email, password, login, router, from]
   );
 
   const handleRegistrar = useCallback(() => {
@@ -51,9 +50,9 @@ function LoginForm() {
 
   useEffect(() => {
     if (user) {
-      router.replace(searchParams.get("from") ?? "/perfil");
+      router.replace(from);
     }
-  }, [user, router, searchParams]);
+  }, [user, router, from]);
 
   if (user) {
     return null;

@@ -49,8 +49,8 @@ function savePreferences(userId: string, prefs: Record<string, Preference>) {
 }
 
 type CharacterPreferencesContextValue = {
-  getPreference: (characterId: string) => Preference | null;
-  setPreference: (characterId: string, value: Preference | null) => void;
+  getPreference: (characterSlug: string) => Preference | null;
+  setPreference: (characterSlug: string, value: Preference | null) => void;
 };
 
 const CharacterPreferencesContext =
@@ -85,16 +85,16 @@ export function CharacterPreferencesProvider({
   }, [userId, preferences]);
 
   const getPreference = useCallback(
-    (characterId: string): Preference | null => {
-      return preferences[characterId] ?? null;
+    (characterSlug: string): Preference | null => {
+      return preferences[characterSlug] ?? null;
     },
     [preferences]
   );
 
   const setPreference = useCallback(
-    (characterId: string, value: Preference | null) => {
-      logger.log("pref", characterId, value);
-      dispatch({ type: "SET_PREFERENCE", payload: { characterId, value } });
+    (characterSlug: string, value: Preference | null) => {
+      logger.log("pref", characterSlug, value);
+      dispatch({ type: "SET_PREFERENCE", payload: { characterSlug, value } });
     },
     []
   );

@@ -5,7 +5,7 @@ export type PreferencesState = Record<string, Preference>;
 export type PreferencesAction =
   | {
       type: "SET_PREFERENCE";
-      payload: { characterId: string; value: Preference | null };
+      payload: { characterSlug: string; value: Preference | null };
     }
   | { type: "LOAD"; payload: Record<string, Preference> }
   | { type: "CLEAR" };
@@ -16,12 +16,12 @@ export function preferencesReducer(
 ): PreferencesState {
   switch (action.type) {
     case "SET_PREFERENCE": {
-      const { characterId, value } = action.payload;
+      const { characterSlug, value } = action.payload;
       const next = { ...state };
       if (value === null) {
-        delete next[characterId];
+        delete next[characterSlug];
       } else {
-        next[characterId] = value;
+        next[characterSlug] = value;
       }
       return next;
     }

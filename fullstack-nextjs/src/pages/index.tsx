@@ -1,13 +1,19 @@
+import type { GetStaticProps } from "next";
 import { characters } from "@/lib/data";
+import type { Character } from "@/lib/schemas";
 import { CharacterList } from "@/components/CharacterList/CharacterList";
-import { logger } from "@/lib/logger";
 import { HomeHeader } from "@/components/HomeHeader/HomeHeader";
-import styles from "./page.module.css";
+import styles from "./index.module.css";
 
-export const dynamic = "force-static";
+export const getStaticProps: GetStaticProps = async () => ({
+  props: { characters },
+});
 
-export default function Home() {
-  logger.log("home - passou aqui");
+type HomeProps = {
+  characters: Character[];
+};
+
+export default function Home({ characters }: HomeProps) {
   return (
     <div className={styles.page}>
       <main id="main" className={styles.main}>

@@ -2,7 +2,7 @@ import { logger } from "@/lib/logger";
 
 const KEY = "last-character";
 
-export function getLastCharacterId(): string | null {
+export function getLastCharacterSlug(): string | null {
   if (typeof window === "undefined") return null;
   try {
     return sessionStorage.getItem(KEY);
@@ -12,10 +12,10 @@ export function getLastCharacterId(): string | null {
   }
 }
 
-export function setLastCharacterId(id: string): void {
+export function setLastCharacterSlug(slug: string): void {
   if (typeof window === "undefined") return;
   try {
-    sessionStorage.setItem(KEY, id);
+    sessionStorage.setItem(KEY, slug);
   } catch (e) {
     logger.error("excecao ao salvar ultimo personagem:", e);
   }

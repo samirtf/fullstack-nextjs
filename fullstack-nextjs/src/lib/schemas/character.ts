@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const characterSchema = z.object({
-  id: z.string().min(1, "ID é obrigatório"),
+  slug: z.string().min(1, "Slug é obrigatório"),
   name: z.string().min(1, "Nome é obrigatório"),
   race: z.string().min(1, "Raça é obrigatória"),
   shortDescription: z.string().min(1, "Resumo é obrigatório"),

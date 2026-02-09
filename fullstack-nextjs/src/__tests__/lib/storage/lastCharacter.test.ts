@@ -1,4 +1,4 @@
-import { getLastCharacterId, setLastCharacterId } from "@/lib/storage/lastCharacter";
+import { getLastCharacterSlug, setLastCharacterSlug } from "@/lib/storage/lastCharacter";
 
 describe("lastCharacter storage", () => {
   const storage: Record<string, string> = {};
@@ -21,17 +21,17 @@ describe("lastCharacter storage", () => {
 
   it("retorna null quando vazio", () => {
     getItem.mockReturnValue(null);
-    expect(getLastCharacterId()).toBeNull();
+    expect(getLastCharacterSlug()).toBeNull();
     expect(getItem).toHaveBeenCalledWith("last-character");
   });
 
-  it("retorna id armazenado", () => {
+  it("retorna slug armazenado", () => {
     getItem.mockReturnValue("frodo");
-    expect(getLastCharacterId()).toBe("frodo");
+    expect(getLastCharacterSlug()).toBe("frodo");
   });
 
-  it("setLastCharacterId persiste o id", () => {
-    setLastCharacterId("sam");
+  it("setLastCharacterSlug persiste o slug", () => {
+    setLastCharacterSlug("sam");
     expect(setItem).toHaveBeenCalledWith("last-character", "sam");
     expect(storage["last-character"]).toBe("sam");
   });

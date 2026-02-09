@@ -4,7 +4,7 @@ import { UserProvider } from "@/context/UserContext";
 import type { Character } from "@/lib/schemas";
 
 const restrictedCharacter: Character = {
-  id: "elrond",
+  slug: "elrond",
   name: "Elrond",
   race: "Meio-elfo",
   shortDescription: "Senhor de Valfenda.",
@@ -13,7 +13,7 @@ const restrictedCharacter: Character = {
 };
 
 const publicCharacter: Character = {
-  id: "frodo",
+  slug: "frodo",
   name: "Frodo",
   race: "Hobbit",
   shortDescription: "Portador do anel.",

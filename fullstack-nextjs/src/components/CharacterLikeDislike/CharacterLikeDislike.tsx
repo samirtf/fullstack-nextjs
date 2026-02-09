@@ -7,22 +7,22 @@ import { logger } from "@/lib/logger";
 import styles from "./CharacterLikeDislike.module.css";
 
 type CharacterLikeDislikeProps = {
-  characterId: string;
+  characterSlug: string;
 };
 
-export function CharacterLikeDislike({ characterId }: CharacterLikeDislikeProps) {
+export function CharacterLikeDislike({ characterSlug }: CharacterLikeDislikeProps) {
   const { user } = useUser();
   const { getPreference, setPreference } = useCharacterPreferences();
-  const isHearted = getPreference(characterId) === "like";
+  const isHearted = getPreference(characterSlug) === "like";
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      logger.log("click no like", characterId);
-      setPreference(characterId, isHearted ? null : "like");
+      logger.log("click no like", characterSlug);
+      setPreference(characterSlug, isHearted ? null : "like");
     },
-    [characterId, isHearted, setPreference]
+    [characterSlug, isHearted, setPreference]
   );
 
   if (!user) return null;

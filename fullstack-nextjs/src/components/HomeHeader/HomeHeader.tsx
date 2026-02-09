@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
-import { getLastCharacterId } from "@/lib/storage/lastCharacter";
+import { getLastCharacterSlug } from "@/lib/storage/lastCharacter";
 import { logger } from "@/lib/logger";
 import type { Character } from "@/lib/schemas";
 import styles from "./HomeHeader.module.css";
@@ -14,17 +14,21 @@ type HomeHeaderProps = {
 
 export function HomeHeader({ characters }: HomeHeaderProps) {
   const { user } = useUser();
-  const [lastId] = useState(() => getLastCharacterId());
+  const [lastSlug, setLastSlug] = useState<string | null>(null);
 
-  logger.log("header", lastId || "nada");
+  useEffect(() => {
+    setLastSlug(getLastCharacterSlug());
+  }, []);
+
+  logger.log("header", lastSlug || "nada");
 
   const visibleCount = useMemo(
     () => characters.filter((c) => !c.restricted || user).length,
     [characters, user]
   );
 
-  const lastCharacter = lastId
-    ? characters.find((c) => c.id === lastId)
+  const lastCharacter = lastSlug
+    ? characters.find((c) => c.slug === lastSlug)
     : null;
 
 
@@ -33,7 +37,7 @@ export function HomeHeader({ characters }: HomeHeaderProps) {
       {lastCharacter && (
         <p className={styles.lastVisited}>
           Último visitado:{" "}
-          <Link href={`/characters/${lastCharacter.id}`}>
+          <Link href={`/items/${lastCharacter.slug}`}>
             {lastCharacter.name}
           </Link>
         </p>

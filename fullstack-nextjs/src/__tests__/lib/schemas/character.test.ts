@@ -3,7 +3,7 @@ import { characterSchema, characterArraySchema } from "@/lib/schemas";
 describe("characterSchema", () => {
   it("aceita personagem com campos obrigatorios", () => {
     const valid = {
-      id: "frodo",
+      slug: "frodo",
       name: "Frodo Bolseiro",
       race: "Hobbit",
       shortDescription: "Portador do Um Anel.",
@@ -12,7 +12,7 @@ describe("characterSchema", () => {
     const result = characterSchema.safeParse(valid);
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.id).toBe("frodo");
+      expect(result.data.slug).toBe("frodo");
       expect(result.data.name).toBe("Frodo Bolseiro");
       expect(result.data.race).toBe("Hobbit");
     }
@@ -20,7 +20,7 @@ describe("characterSchema", () => {
 
   it("aceita personagem com campos opcionais", () => {
     const valid = {
-      id: "p1",
+      slug: "p1",
       name: "Personagem Teste",
       race: "Humano",
       shortDescription: "Resumo",
@@ -32,7 +32,7 @@ describe("characterSchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("rejeita personagem sem id", () => {
+  it("rejeita personagem sem slug", () => {
     const invalid = {
       name: "Frodo",
       race: "Hobbit",
@@ -43,9 +43,9 @@ describe("characterSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejeita personagem com id vazio", () => {
+  it("rejeita personagem com slug vazio", () => {
     const invalid = {
-      id: "",
+      slug: "",
       name: "Frodo",
       race: "Hobbit",
       shortDescription: "Resumo",
@@ -57,7 +57,7 @@ describe("characterSchema", () => {
 
   it("valida personagem com restricted true", () => {
     const valid = {
-      id: "elrond",
+      slug: "elrond",
       name: "Elrond",
       race: "Meio-elfo",
       shortDescription: "Senhor de Valfenda.",
@@ -73,7 +73,7 @@ describe("characterSchema", () => {
 
   it("default restricted para false quando omitido", () => {
     const valid = {
-      id: "frodo",
+      slug: "frodo",
       name: "Frodo",
       race: "Hobbit",
       shortDescription: "Resumo",
@@ -88,7 +88,7 @@ describe("characterSchema", () => {
 
   it("rejeita personagem com image invalida (nao URL)", () => {
     const invalid = {
-      id: "frodo",
+      slug: "frodo",
       name: "Frodo",
       race: "Hobbit",
       shortDescription: "Resumo",
@@ -104,14 +104,14 @@ describe("characterArraySchema", () => {
   it("aceita array de personagens validos", () => {
     const valid = [
       {
-        id: "a",
+        slug: "a",
         name: "Um",
         race: "Hobbit",
         shortDescription: "Resumo A",
         content: "Conteudo A",
       },
       {
-        id: "b",
+        slug: "b",
         name: "Dois",
         race: "Mago",
         shortDescription: "Resumo B",
@@ -128,14 +128,14 @@ describe("characterArraySchema", () => {
   it("rejeita array com personagem invalido", () => {
     const invalid = [
       {
-        id: "a",
+        slug: "a",
         name: "Um",
         race: "Hobbit",
         shortDescription: "A",
         content: "B",
       },
       {
-        id: "",
+        slug: "",
         name: "Dois",
         race: "Mago",
         shortDescription: "C",

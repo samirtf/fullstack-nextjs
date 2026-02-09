@@ -10,13 +10,13 @@ type CharacterCardProps = {
 };
 
 export function CharacterCard({ character }: CharacterCardProps) {
-  const { id, name, race, shortDescription, image } = character;
+  const { slug, name, race, shortDescription, image } = character;
 
   logger.log("card", name);
 
   return (
     <article className={styles.card}>
-      <Link href={`/characters/${id}`} className={styles.link}>
+      <Link href={`/items/${slug}`} className={styles.link}>
         {image ? (
           <div className={styles.imageWrapper}>
             <Image
@@ -38,7 +38,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
         </div>
       </Link>
       <div className={styles.actions}>
-        <CharacterLikeDislike characterId={id} />
+        <CharacterLikeDislike characterSlug={slug} />
       </div>
     </article>
   );
