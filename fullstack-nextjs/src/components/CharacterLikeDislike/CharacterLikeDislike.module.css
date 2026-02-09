@@ -1,0 +1,28 @@
+.heartButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #9e9e9e;
+  transition: color 0.2s ease;
+}
+
+.heartButton:hover,
+.heartButton:focus-visible {
+  color: #c62828;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.heartActive {
+  color: #c62828;
+}
+
+.heartIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

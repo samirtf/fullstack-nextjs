@@ -1,0 +1,40 @@
+.wrapper {
+}
+
+.loginBlock {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.loginTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: var(--foreground);
+}
+
+.loginMessage {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.loginLink {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--background);
+  background-color: var(--foreground);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.loginLink:hover,
+.loginLink:focus-visible {
+  opacity: 0.9;
+}
