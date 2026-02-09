@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { logger } from "@/lib/logger";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 
@@ -23,7 +24,7 @@ export default function PerfilPage() {
   }, [user, router]);
 
   const handleLogout = useCallback(() => {
-    console.log("saiu");
+    logger.log("saiu");
     logout();
     setName("");
     setEmail("");
@@ -34,13 +35,13 @@ export default function PerfilPage() {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log("salvando...");
       setError(null);
       setSaveLoading(true);
+      logger.log("salvando...");
       try {
         updateUser({ name, email, avatar: avatar || undefined });
         setIsEditing(false);
-        console.log("salvou");
+        logger.log("salvou");
       } finally {
         setSaveLoading(false);
       }

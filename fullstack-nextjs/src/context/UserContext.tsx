@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import type { User } from "@/lib/schemas";
+import { logger } from "@/lib/logger";
 
 const STORAGE_KEY = "user-session";
 
@@ -28,7 +29,7 @@ function loadStoredUser(): User | null {
       return parsed as User;
     }
   } catch (e) {
-    console.log("excecao:", e);
+    logger.error("excecao ao carregar usuario do storage:", e);
   }
   return null;
 }
@@ -93,14 +94,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = useCallback((user: User) => {
-    console.log("login entrou", user.email);
+    logger.log("login entrou", user.email);
     saveStoredUser(user);
     dispatch({ type: "LOGIN", payload: user });
-    console.log("login fim");
+    logger.log("login fim");
   }, []);
 
   const logout = useCallback(() => {
-    console.log("logout");
+    logger.log("logout");
     saveStoredUser(null);
     dispatch({ type: "LOGOUT" });
   }, []);

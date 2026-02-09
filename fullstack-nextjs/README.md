@@ -106,8 +106,8 @@ Os dados vêm de `src/lib/data` (sem banco de dados).
 ## Contas de teste
 
 Usuário, E-mail, Senha
-samir, samir.admin@demo.app, 123456
-frodo, frodo@condado.terra, 1ate6
+samir, samir.admin@condado.com.br, 1234567
+frodo, frodo@condado.com.br, 1234567
 
 ## Testes
 

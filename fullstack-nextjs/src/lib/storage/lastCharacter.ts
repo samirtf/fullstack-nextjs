@@ -1,3 +1,5 @@
+import { logger } from "@/lib/logger";
+
 const KEY = "last-character";
 
 export function getLastCharacterId(): string | null {
@@ -5,7 +7,7 @@ export function getLastCharacterId(): string | null {
   try {
     return sessionStorage.getItem(KEY);
   } catch (e) {
-    console.log("excecao:", e);
+    logger.error("excecao ao ler ultimo personagem:", e);
     return null;
   }
 }
@@ -15,6 +17,6 @@ export function setLastCharacterId(id: string): void {
   try {
     sessionStorage.setItem(KEY, id);
   } catch (e) {
-    console.log("excecao:", e);
+    logger.error("excecao ao salvar ultimo personagem:", e);
   }
 }

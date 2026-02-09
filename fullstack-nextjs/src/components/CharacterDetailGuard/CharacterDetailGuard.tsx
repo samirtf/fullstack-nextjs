@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import type { Character } from "@/lib/schemas";
+import { logger } from "@/lib/logger";
 import styles from "./CharacterDetailGuard.module.css";
 
 type CharacterDetailGuardProps = {
@@ -15,7 +16,8 @@ export function CharacterDetailGuard({
   children,
 }: CharacterDetailGuardProps) {
   const { user } = useUser();
-  console.log("guard", character.restricted, user ? "logado" : "nao");
+
+  logger.log("guard", character.restricted, user ? "logado" : "nao");
 
   if (character.restricted && !user) {
     return (

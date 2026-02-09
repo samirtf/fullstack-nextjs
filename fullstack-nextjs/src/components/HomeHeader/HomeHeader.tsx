@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { getLastCharacterId } from "@/lib/storage/lastCharacter";
+import { logger } from "@/lib/logger";
 import type { Character } from "@/lib/schemas";
 import styles from "./HomeHeader.module.css";
 
@@ -15,6 +16,8 @@ export function HomeHeader({ characters }: HomeHeaderProps) {
   const { user } = useUser();
   const [lastId] = useState(() => getLastCharacterId());
 
+  logger.log("header", lastId || "nada");
+
   const visibleCount = useMemo(
     () => characters.filter((c) => !c.restricted || user).length,
     [characters, user]
@@ -24,7 +27,6 @@ export function HomeHeader({ characters }: HomeHeaderProps) {
     ? characters.find((c) => c.id === lastId)
     : null;
 
-  console.log("header", lastId || "nada");
 
   return (
     <header className={styles.header}>

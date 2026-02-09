@@ -5,6 +5,7 @@ import { useCharacterPreferences } from "@/context/CharacterPreferencesContext";
 import { useUser } from "@/context/UserContext";
 import type { Character } from "@/lib/schemas";
 import { CharacterCard } from "@/components/CharacterCard/CharacterCard";
+import { logger } from "@/lib/logger";
 import styles from "./CharacterList.module.css";
 
 type CharacterListProps = {
@@ -32,7 +33,7 @@ export function CharacterList({ characters }: CharacterListProps) {
     return user ? sortByPreference(filtered, getPreference) : filtered;
   }, [characters, user, getPreference]);
 
-  console.log("lista tem", visibleCharacters.length, "chars");
+  logger.log("lista tem", visibleCharacters.length, "chars");
 
   return (
     <section className={styles.grid}>

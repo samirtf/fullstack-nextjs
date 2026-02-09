@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { usersWithCredentials } from "@/lib/data/users";
+import { logger } from "@/lib/logger";
 
 export async function POST(request: Request) {
-  console.log("login api");
+  logger.log("login api");
   try {
     const body = await request.json();
     const { email, password } = body as { email?: string; password?: string };
@@ -26,10 +27,10 @@ export async function POST(request: Request) {
     }
 
     const { password: _, ...user } = found;
-    console.log("logou", found.email);
+    logger.log("logou", found.email);
     return NextResponse.json(user);
   } catch (e) {
-    console.log("excecao:", e);
+    logger.error("excecao no login api:", e);
     return NextResponse.json(
       { error: "Requisição inválida" },
       { status: 400 }

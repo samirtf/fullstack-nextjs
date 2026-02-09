@@ -6,11 +6,16 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useReducer,
   type ReactNode,
 } from "react";
+import {
+  type Preference,
+  preferencesReducer,
+} from "@/lib/reducers/preferences";
+import { logger } from "@/lib/logger";
 
-export type Preference = "like" | "dislike";
+export type { Preference } from "@/lib/reducers/preferences";
 
 const STORAGE_PREFIX = "character-preferences";
 
@@ -29,8 +34,7 @@ function loadPreferences(userId: string | null): Record<string, Preference> {
       if (val === "like" || val === "dislike") result[id] = val;
     }
     return result;
-  } catch (e) {
-    console.log("excecao:", e);
+  } catch {
     return {};
   }
 }
@@ -39,8 +43,8 @@ function savePreferences(userId: string, prefs: Record<string, Preference>) {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(getStorageKey(userId), JSON.stringify(prefs));
-  } catch (e) {
-    console.log("excecao:", e);
+  } catch {
+    // Ignore storage errors
   }
 }
 
@@ -61,15 +65,16 @@ export function CharacterPreferencesProvider({
   children,
   userId,
 }: CharacterPreferencesProviderProps) {
-  const [preferences, setPreferences] = useState<Record<string, Preference>>(
-    () => (userId ? loadPreferences(userId) : {})
+  const [preferences, dispatch] = useReducer(
+    preferencesReducer,
+    userId ? loadPreferences(userId) : {}
   );
 
   useEffect(() => {
     if (userId) {
-      setPreferences(loadPreferences(userId));
+      dispatch({ type: "LOAD", payload: loadPreferences(userId) });
     } else {
-      setPreferences({});
+      dispatch({ type: "CLEAR" });
     }
   }, [userId]);
 
@@ -88,16 +93,8 @@ export function CharacterPreferencesProvider({
 
   const setPreference = useCallback(
     (characterId: string, value: Preference | null) => {
-      console.log("pref", characterId, value);
-      setPreferences((prev) => {
-        const next = { ...prev };
-        if (value === null) {
-          delete next[characterId];
-        } else {
-          next[characterId] = value;
-        }
-        return next;
-      });
+      logger.log("pref", characterId, value);
+      dispatch({ type: "SET_PREFERENCE", payload: { characterId, value } });
     },
     []
   );

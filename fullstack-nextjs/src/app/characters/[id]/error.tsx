@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { logger } from "@/lib/logger";
 import styles from "./error.module.css";
 
 type ErrorProps = {
@@ -11,7 +12,7 @@ type ErrorProps = {
 
 export default function CharacterError({ error, reset }: ErrorProps) {
   useEffect(() => {
-    console.log("deu erro aki", error);
+    logger.error("deu erro na pagina do personagem:", error);
   }, [error]);
 
   return (

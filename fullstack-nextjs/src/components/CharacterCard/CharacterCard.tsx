@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Character } from "@/lib/schemas";
+import { logger } from "@/lib/logger";
 import { CharacterLikeDislike } from "@/components/CharacterLikeDislike/CharacterLikeDislike";
 import styles from "./CharacterCard.module.css";
 
@@ -10,7 +11,8 @@ type CharacterCardProps = {
 
 export function CharacterCard({ character }: CharacterCardProps) {
   const { id, name, race, shortDescription, image } = character;
-  console.log("card", name);
+
+  logger.log("card", name);
 
   return (
     <article className={styles.card}>

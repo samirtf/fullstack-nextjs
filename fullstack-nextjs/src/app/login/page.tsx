@@ -1,8 +1,9 @@
 "use client";
 
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+import { logger } from "@/lib/logger";
 import styles from "./page.module.css";
 
 function LoginForm() {
@@ -30,12 +31,12 @@ function LoginForm() {
           setError(data.error ?? "E-mail ou senha inválidos");
           return;
         }
-        console.log("user logged", data.email);
+        logger.log("user logged", data.email);
         login(data);
         const from = searchParams.get("from") ?? "/perfil";
         router.push(from);
       } catch (e) {
-        console.log("excecao:", e);
+        logger.error("excecao ao conectar no login:", e);
         setError("Nao deu pra conectar, tenta de novo");
       } finally {
         setIsLoading(false);
@@ -48,8 +49,13 @@ function LoginForm() {
     setError("Registro ainda nao disponivel");
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      router.replace(searchParams.get("from") ?? "/perfil");
+    }
+  }, [user, router, searchParams]);
+
   if (user) {
-    router.replace(searchParams.get("from") ?? "/perfil");
     return null;
   }
 

@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { useCharacterPreferences } from "@/context/CharacterPreferencesContext";
 import { useUser } from "@/context/UserContext";
+import { logger } from "@/lib/logger";
 import styles from "./CharacterLikeDislike.module.css";
 
 type CharacterLikeDislikeProps = {
@@ -18,7 +19,7 @@ export function CharacterLikeDislike({ characterId }: CharacterLikeDislikeProps)
     (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      console.log("click no like", characterId);
+      logger.log("click no like", characterId);
       setPreference(characterId, isHearted ? null : "like");
     },
     [characterId, isHearted, setPreference]

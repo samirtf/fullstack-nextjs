@@ -11,14 +11,14 @@ const usersWithCredentials: UserWithCredentials[] = [
   {
     id: "admin",
     name: "Samir",
-    email: "samir.admin@demo.app",
-    password: "Anel123!",
+    email: "samir.admin@condado.com.br",
+    password: "1234567",
   },
   {
     id: "frodo",
     name: "Frodo",
-    email: "frodo@condado.terra",
-    password: "Anel123!",
+    email: "frodo@condado.com.br",
+    password: "1234567",
   },
 ];
 

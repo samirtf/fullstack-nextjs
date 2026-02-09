@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { setLastCharacterId } from "@/lib/storage/lastCharacter";
+import { logger } from "@/lib/logger";
 
 type LastVisitedTrackerProps = {
   characterId: string;
@@ -9,7 +10,7 @@ type LastVisitedTrackerProps = {
 
 export function LastVisitedTracker({ characterId }: LastVisitedTrackerProps) {
   useEffect(() => {
-    console.log("ultimo visitado", characterId);
+    logger.log("ultimo visitado", characterId);
     setLastCharacterId(characterId);
   }, [characterId]);
 
