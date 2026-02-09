@@ -8,7 +8,7 @@ Projeto React com Next.js. Exibe os nove membros da **Sociedade do Anel**: lista
 - **Detalhes** – Página por personagem com imagem, raça, resumo e descrição; geração estática com revalidação (ISR).
 - **Perfil** – Login com dados mockados no json, exibição e edição de nome, e-mail e avatar.
 - Acessibilidade – Implementação básica: skip link “Pular para o conteúdo”, foco visível ao navegar por teclado, labels e estados de carregamento/erro.
-- **Tema** – Suporte a tema claro/escuro.
+- **Tema** – Tema claro.
 
 ## Decisões de Arquitetura
 

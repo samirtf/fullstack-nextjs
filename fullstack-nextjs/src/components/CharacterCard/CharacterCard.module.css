@@ -48,15 +48,6 @@
   background: var(--card-image-bg, #e0e0e0);
 }
 
-@media (prefers-color-scheme: dark) {
-  .card {
-    --card-bg: #1a1a1a;
-    --card-image-bg: #2a2a2a;
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  }
-}
-
 .content {
   padding: 1rem 1.25rem;
 }

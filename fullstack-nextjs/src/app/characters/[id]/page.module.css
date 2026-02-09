@@ -115,12 +115,6 @@
   padding-top: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  .content {
-    border-top-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
 @media (min-width: 640px) {
   .main {
     padding: 2rem;
